@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace VLTest.Enemy
 {
     public class Movement : MonoBehaviour
     {
-        Rotator rotator;
+        private Rotator rotator;
 
         private void Awake()
         {
@@ -22,7 +20,7 @@ namespace VLTest.Enemy
         {
             Vector3 pivot = transform.position + (transform.forward * 0.5f);
             pivot.y -= 0.5f;
-            rotator.Rotate(pivot, 90, 100, Move);
+            rotator.Rotate(pivot, transform.right, 90, 100, Move);
         }
 
     }
