@@ -1,29 +1,39 @@
 ﻿using UnityEngine;
 using System;
+using VLTest.Utils;
 
-namespace VLTest.Enemy.Movements
+namespace VLTest.Enemy.Movement
 {
-    [RequireComponent(typeof(Rotator))]
-    public class ZigZagMovement : EnemyMovement
+    [CreateAssetMenu(menuName = "Enemy/Movements/Zig-zag")]
+    public class ZigZagMovement : EnemyMovementType
+    {
+
+        public override EnemyMovementLogic CreateMovement(GameObject enemy)
+        {
+            return new ZigZagLogic(enemy);
+        }
+
+    }
+
+    public class ZigZagLogic : EnemyMovementLogic
     {
         private const float ANGLE = 90f;
-        private const float SPEED = 100f;
 
         private Rotator rotator;
         private bool right;
 
-        private void Awake()
+        public ZigZagLogic(GameObject enemy)
         {
-            rotator = GetComponent<Rotator>();
+            transform = enemy.transform;
+            rotator = GameObjectUtils.GetComponentOrCreateIfNotExists<Rotator>(enemy);
         }
 
-        public override void Move(Action callback)
+        public override void Move(float speed, Action callback)
         {
             Vector3 pivot = transform.position + (transform.right * (right ? 0.5f : -0.5f));
             pivot.y -= 0.5f;
-            rotator.Rotate(pivot, right ? -transform.forward : transform.forward, ANGLE, SPEED, callback);
+            rotator.Rotate(pivot, right ? -transform.forward : transform.forward, ANGLE, speed, callback);
             right = !right;
         }
-
     }
 }

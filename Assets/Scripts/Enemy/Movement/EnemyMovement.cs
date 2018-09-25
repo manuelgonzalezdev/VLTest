@@ -1,11 +1,38 @@
 ﻿using UnityEngine;
-using System;
+using System.Collections.Generic;
 
-namespace VLTest.Enemy.Movements
+namespace VLTest.Enemy.Movement
 {
-    public abstract class EnemyMovement : MonoBehaviour
+    public class EnemyMovement : MonoBehaviour
     {
-        public abstract void Move(Action callback);
+        public bool moving;
+        public float speed;
+
+        EnemyMovementLogic mainMovement;
+        List<EnemyMovementLogic> secondaryMovements;
+
+        public void LoadMovements(EnemyConfig config)
+        {
+            speed = config.speed;
+            mainMovement = config.mainMovement.CreateMovement(gameObject);
+            secondaryMovements = new List<EnemyMovementLogic>();
+            foreach (EnemyMovementType movementType in config.secondayMovements)
+            {
+                secondaryMovements.Add(movementType.CreateMovement(gameObject));
+            }
+        }
+
+        private void OnEnable()
+        {
+            Move();
+        }
+
+        void Move()
+        {
+            mainMovement.Move(speed, Move);
+
+        }
 
     }
+
 }

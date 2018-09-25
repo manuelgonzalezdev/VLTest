@@ -28,6 +28,15 @@ namespace VLTest.Enemy
             rotating = true;
         }
 
+        private void OnDisable()
+        {
+            if (rotating)
+            {
+                transform.rotation = lastRotation;
+                rotating = false;
+            }
+        }
+
         void Update()
         {
             if (rotating)
@@ -54,7 +63,7 @@ namespace VLTest.Enemy
             }
         }
 
-        private void OnDrawGizmosSelected()
+        void OnDrawGizmosSelected()
         {
             Gizmos.DrawSphere(pivot, 0.1f);
         }
