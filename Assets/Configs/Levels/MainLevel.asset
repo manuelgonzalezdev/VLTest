@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Name: MainLevel
   m_EditorClassIdentifier: 
   spawnFrequencyInSeconds: 2
-  maxEnemiesInScene: 10
+  maxEnemiesInScene: 20
   enemyPool: {fileID: 11400000, guid: b4503efd3e923924bb530ca95785a093, type: 2}
   enemyConfigs:
-  - {fileID: 11400000, guid: 1046e9f1d93a22642a8303d56130fb88, type: 2}
   - {fileID: 11400000, guid: 4bbb6db6ea9e67c4784945f209a6a180, type: 2}
+  - {fileID: 11400000, guid: 1046e9f1d93a22642a8303d56130fb88, type: 2}
   - {fileID: 11400000, guid: f190b35aae27ce64ebd94066cd54d8fd, type: 2}
   titanConfig: {fileID: 11400000, guid: 706260e7192e54a4aabe1ceca9123e46, type: 2}

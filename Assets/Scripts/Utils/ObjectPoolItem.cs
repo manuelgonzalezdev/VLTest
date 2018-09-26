@@ -13,6 +13,11 @@ namespace VLTest.Utils
             this.pool = pool;
         }
 
+        public virtual void Activate()
+        {
+            gameObject.SetActive(true);
+        }
+
         [ContextMenu("Destroy")]
         public virtual void Deactivate()
         {

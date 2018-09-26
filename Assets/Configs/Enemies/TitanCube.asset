@@ -14,6 +14,7 @@ MonoBehaviour:
   life: 1
   size: 3
   speed: 50
+  secondaryMovementFrequency: 3
   spawnProbability: 1
   mainMovement: {fileID: 11400000, guid: 7f2cd1849a5640f4eb79ce816832c1f3, type: 2}
   secondayMovements: []

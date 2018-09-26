@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Name: JumpingCube
   m_EditorClassIdentifier: 
   life: 1
-  size: 1
-  speed: 1
-  spawnProbability: 0.2
-  mainMovement: {fileID: 11400000, guid: 3657c8e8d5fc13e4ab6e4a8100b5ce82, type: 2}
-  secondayMovements: []
+  size: 0.5
+  speed: 100
+  secondaryMovementFrequency: 3
+  spawnProbability: 0.3
+  mainMovement: {fileID: 11400000, guid: 7f2cd1849a5640f4eb79ce816832c1f3, type: 2}
+  secondayMovements:
+  - {fileID: 11400000, guid: 3657c8e8d5fc13e4ab6e4a8100b5ce82, type: 2}

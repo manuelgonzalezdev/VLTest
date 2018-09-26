@@ -28,14 +28,16 @@ namespace VLTest.Level
             enemyPool.Populate();
         }
 
-        public Enemy SpawnEnemy(Vector3 position, Quaternion rotation)
+        public Enemy SpawnEnemy(EnemyConfig enemyConfig, Vector3 position, Quaternion rotation)
         {
-            Enemy enemy = enemyPool.Spawn(position, rotation).GetComponent<Enemy>();
-            enemy.LoadConfig(GetRandomEnemyConfig());
+            Vector3 finalPosition = position;
+            finalPosition.y -= 0.5f - (enemyConfig.size * 0.5f);
+            Enemy enemy = enemyPool.Spawn(finalPosition, rotation).GetComponent<Enemy>();
+            enemy.LoadConfig(enemyConfig);
             return enemy;
         }
 
-        private EnemyConfig GetRandomEnemyConfig()
+        public EnemyConfig GetRandomEnemyConfig()
         {
             float probability = Random.Range(0f, 1f);
             for (int i = 0; i < enemyConfigs.Count; i++)

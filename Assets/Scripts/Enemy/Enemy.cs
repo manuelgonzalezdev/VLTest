@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using VLTest.Enemies.Movement;
+using VLTest.Utils;
 
 namespace VLTest.Enemies
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : ObjectPoolItem
     {
         [System.NonSerialized]
         public EnemyConfig config;
@@ -13,8 +14,11 @@ namespace VLTest.Enemies
 
         public void LoadConfig(EnemyConfig config)
         {
+            gameObject.name = config.name;
             this.config = config;
+            transform.localScale = Vector3.one * config.size;
             movement.LoadMovements(config);
+            movement.Play();
         }
 
         private void Awake()
@@ -25,9 +29,10 @@ namespace VLTest.Enemies
             }
         }
 
-        private void Start()
+        public override void Deactivate()
         {
-            movement.enabled = true;
+            movement.Stop();
+            base.Deactivate();
         }
 
     }

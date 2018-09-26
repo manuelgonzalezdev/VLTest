@@ -11,5 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dce1c5c71c7653428a4bf91b4c86a65, type: 3}
   m_Name: Jumping
   m_EditorClassIdentifier: 
+  jumpingSpeed: 0.01
   jumpingDistance: 1
   jumpingHeight: 1

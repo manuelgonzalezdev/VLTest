@@ -11,6 +11,7 @@ namespace VLTest.Enemies
         public float life = 1f;
         public float size = 1f;
         public float speed = 1f;
+        public int secondaryMovementFrequency = 3;
         [Range(0f, 1f)]
         public float spawnProbability = 0.5f;
 

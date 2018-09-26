@@ -27,8 +27,8 @@ namespace VLTest.Enemies.Movement
 
         public override void Move(float speed, Action callback)
         {
-            Vector3 pivot = transform.position + (transform.forward * 0.5f);
-            pivot.y -= 0.5f;
+            Vector3 pivot = transform.position + (transform.forward * 0.5f * transform.localScale.z);
+            pivot.y -= transform.localScale.y * 0.5f;
             rotator.Rotate(pivot, transform.right, ANGLE, speed, callback);
         }
 

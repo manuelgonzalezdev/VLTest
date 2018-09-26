@@ -51,7 +51,7 @@ namespace VLTest.Utils
 
             activeItems.Add(item);
             item.gameObject.transform.SetPositionAndRotation(position, rotation);
-            item.gameObject.SetActive(true);
+            item.Activate();
 
             return item;
         }

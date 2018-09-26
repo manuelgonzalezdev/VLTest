@@ -1,7 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using VLTest.Game;
+using VLTest.Enemies;
+using SysRandom = System.Random;
+using System.Linq;
 
 namespace VLTest.Level
 {
@@ -88,25 +90,28 @@ namespace VLTest.Level
         private IEnumerator FindFreeSpawnPointAndSpawn()
         {
             spawning = true;
-            yield return StartCoroutine(GetRandomSpawnPoint());
+            EnemyConfig config = level.GetRandomEnemyConfig();
+            yield return StartCoroutine(GetRandomSpawnPoint(config));
             if (selectedSpawnPoint != null)
             {
                 Vector3 position = selectedSpawnPoint.getPoint();
                 Quaternion rotation = Quaternion.LookRotation(player.position - position);
-                level.SpawnEnemy(position, rotation);
+                level.SpawnEnemy(config, position, rotation);
             }
             spawning = false;
         }
 
-        private IEnumerator GetRandomSpawnPoint()
+        private IEnumerator GetRandomSpawnPoint(EnemyConfig config)
         {
             selectedSpawnPoint = null;
             WaitForSeconds waiting = new WaitForSeconds(1f);
             while (Application.isPlaying && selectedSpawnPoint == null)
             {
-                foreach (SpawnPoint spawnPoint in spawnPoints)
+                SysRandom rnd = new SysRandom();
+                foreach (int randomIndex in Enumerable.Range(0, spawnPoints.Length).OrderBy(x => rnd.Next()))
                 {
-                    if (spawnPoint.IsFree())
+                    SpawnPoint spawnPoint = spawnPoints[randomIndex];
+                    if (spawnPoint.IsFree(config.size))
                     {
                         selectedSpawnPoint = spawnPoint;
                         break;
