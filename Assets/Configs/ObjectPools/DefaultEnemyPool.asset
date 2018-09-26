@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72620764b8f89bd4582aeca12a73be90, type: 3}
+  m_Name: DefaultEnemyPool
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 1274431166664374, guid: acb5f251a3110424d89fbc7f7f7f0665, type: 2}
+  minPopulation: 5
+  maxPopulation: 10
+  inactivePosition: {x: 9999, y: 9999, z: 9999}

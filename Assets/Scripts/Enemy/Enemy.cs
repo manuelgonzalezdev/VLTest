@@ -1,20 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using VLTest.Enemy.Movement;
+using VLTest.Enemies.Movement;
 
-namespace VLTest.Enemy
+namespace VLTest.Enemies
 {
     public class Enemy : MonoBehaviour
     {
+        [System.NonSerialized]
+        public EnemyConfig config;
         public EnemyMovement movement;
 
-        public EnemyConfig config;
+        public void LoadConfig(EnemyConfig config)
+        {
+            this.config = config;
+            movement.LoadMovements(config);
+        }
 
         private void Awake()
         {
-            movement = GetComponent<EnemyMovement>();
-            movement.LoadMovements(config);
+            if (movement == null)
+            {
+                movement = GetComponent<EnemyMovement>();
+            }
+        }
+
+        private void Start()
+        {
             movement.enabled = true;
         }
 

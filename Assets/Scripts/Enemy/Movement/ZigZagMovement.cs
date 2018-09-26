@@ -2,7 +2,7 @@
 using System;
 using VLTest.Utils;
 
-namespace VLTest.Enemy.Movement
+namespace VLTest.Enemies.Movement
 {
     [CreateAssetMenu(menuName = "Enemy/Movements/Zig-zag")]
     public class ZigZagMovement : EnemyMovementType
@@ -35,5 +35,11 @@ namespace VLTest.Enemy.Movement
             rotator.Rotate(pivot, right ? -transform.forward : transform.forward, ANGLE, speed, callback);
             right = !right;
         }
+
+        public override void Cancel()
+        {
+            rotator.Cancel();
+        }
+
     }
 }

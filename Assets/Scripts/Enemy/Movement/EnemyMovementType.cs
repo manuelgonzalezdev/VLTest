@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-namespace VLTest.Enemy.Movement
+namespace VLTest.Enemies.Movement
 {
     public abstract class EnemyMovementType : ScriptableObject
     {
@@ -14,6 +14,7 @@ namespace VLTest.Enemy.Movement
         protected Transform transform;
 
         public abstract void Move(float speed, Action callback);
+        public abstract void Cancel();
 
     }
 }

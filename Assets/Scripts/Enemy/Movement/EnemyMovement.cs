@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace VLTest.Enemy.Movement
+namespace VLTest.Enemies.Movement
 {
     public class EnemyMovement : MonoBehaviour
     {

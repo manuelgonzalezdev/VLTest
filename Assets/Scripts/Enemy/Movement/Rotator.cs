@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-namespace VLTest.Enemy
+namespace VLTest.Enemies.Movement
 {
     public class Rotator : MonoBehaviour
     {
@@ -28,13 +28,18 @@ namespace VLTest.Enemy
             rotating = true;
         }
 
-        private void OnDisable()
+        public void Cancel()
         {
             if (rotating)
             {
                 transform.rotation = lastRotation;
                 rotating = false;
             }
+        }
+
+        private void OnDisable()
+        {
+            Cancel();
         }
 
         void Update()

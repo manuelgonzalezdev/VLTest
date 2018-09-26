@@ -3,21 +3,22 @@ using UnityEngine;
 
 namespace VLTest.Utils
 {
-    public class ObjectPool
+    [CreateAssetMenu(menuName = "Object Pool")]
+    public class ObjectPool : ScriptableObject
     {
-        private GameObject itemPrefab;
-        private int minPopulation;
-        private int maxPopulation;
-        private Vector3 inactivePosition = new Vector3(9999, 9999, 9999);
+        public GameObject itemPrefab;
+        public int minPopulation = 5;
+        public int maxPopulation = 10;
+        public Vector3 inactivePosition = new Vector3(9999, 9999, 9999);
 
-        private List<ObjectPoolItem> inactiveItems = new List<ObjectPoolItem>(0);
-        private List<ObjectPoolItem> activeItems = new List<ObjectPoolItem>(0);
+        private List<ObjectPoolItem> inactiveItems = new List<ObjectPoolItem>();
+        private List<ObjectPoolItem> activeItems = new List<ObjectPoolItem>();
 
-        public ObjectPool(GameObject prefab, int minPopulation, int maxPopulation)
+        private bool populated = false;
+
+        public int activeItemsCount
         {
-            this.itemPrefab = prefab;
-            this.minPopulation = minPopulation;
-            this.maxPopulation = maxPopulation;
+            get { return activeItems.Count; }
         }
 
         public void Populate()
@@ -27,10 +28,16 @@ namespace VLTest.Utils
             {
                 inactiveItems.Add(Create());
             }
+            populated = true;
         }
 
         public ObjectPoolItem Spawn(Vector3 position, Quaternion rotation)
         {
+            if (!populated)
+            {
+                Populate();
+            }
+
             ObjectPoolItem item = null;
             if (inactiveItems.Count > 0)
             {
@@ -77,7 +84,7 @@ namespace VLTest.Utils
 
         public void Clear()
         {
-            if(activeItems.Count > 0)
+            if (activeItems.Count > 0)
             {
                 for (int i = 0; i < activeItems.Count; i++)
                 {

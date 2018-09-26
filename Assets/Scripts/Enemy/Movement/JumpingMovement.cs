@@ -2,7 +2,7 @@
 using System;
 using VLTest.Utils;
 
-namespace VLTest.Enemy.Movement
+namespace VLTest.Enemies.Movement
 {
     [CreateAssetMenu(menuName = "Enemy/Movements/Jumping")]
     public class JumpingMovement : EnemyMovementType
@@ -36,8 +36,11 @@ namespace VLTest.Enemy.Movement
         public override void Move(float speed, Action callback)
         {
             jumper.Jump(DISTANCE, height, speed, callback);
+        }
 
-
+        public override void Cancel()
+        {
+            jumper.Cancel();
         }
     }
 }

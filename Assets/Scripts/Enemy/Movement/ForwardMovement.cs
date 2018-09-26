@@ -2,7 +2,7 @@
 using System;
 using VLTest.Utils;
 
-namespace VLTest.Enemy.Movement
+namespace VLTest.Enemies.Movement
 {
     [CreateAssetMenu(menuName = "Enemy/Movements/Forward")]
     public class ForwardMovement : EnemyMovementType
@@ -30,6 +30,11 @@ namespace VLTest.Enemy.Movement
             Vector3 pivot = transform.position + (transform.forward * 0.5f);
             pivot.y -= 0.5f;
             rotator.Rotate(pivot, transform.right, ANGLE, speed, callback);
+        }
+
+        public override void Cancel()
+        {
+            rotator.Cancel();
         }
     }
 
