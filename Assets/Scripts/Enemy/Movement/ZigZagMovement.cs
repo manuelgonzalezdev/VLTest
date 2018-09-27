@@ -22,22 +22,38 @@ namespace VLTest.Enemies.Movement
         private Rotator rotator;
         private bool right;
 
-        public ZigZagLogic(GameObject enemy)
+        public ZigZagLogic(GameObject enemy) : base(enemy)
         {
-            transform = enemy.transform;
-            rotator = GameObjectUtils.GetComponentOrCreateIfNotExists<Rotator>(enemy);
+            rotator = Utils.Utils.GetComponentOrCreateIfNotExists<Rotator>(enemy);
         }
 
-        public override void Move(float speed, Action callback)
+        public override bool Move(float speed, Action callback, ObjectPool projectionPool)
         {
-            Vector3 pivot = transform.position + (transform.right * (right ? 0.5f : -0.5f) * transform.localScale.x);
-            pivot.y -= transform.localScale.y * 0.5f;
-            rotator.Rotate(pivot, right ? -transform.forward : transform.forward, ANGLE, speed, callback);
-            right = !right;
+            float size = transform.localScale.z;
+            Vector3 direction = (right ? Vector3.right : -Vector3.right);
+            Vector3 localDirection = transform.TransformDirection(direction * size);
+            Vector3 destination = transform.position + localDirection;
+            
+            if (MovementIsValid(destination, size, transform.rotation))
+            {
+                this.callback = callback;
+
+                Vector3 pivot = transform.position + (transform.right * (right ? 0.5f : -0.5f) * transform.localScale.x);
+                pivot.y -= transform.localScale.y * 0.5f;
+                rotator.Rotate(pivot, right ? -transform.forward : transform.forward, ANGLE, speed, OnMovementFinished);
+
+                this.projection = CreateProjection(projectionPool, right ? Vector3.right : -Vector3.right);
+
+                right = !right;
+                return true;
+            }
+
+            return false;
         }
 
         public override void Cancel()
         {
+            base.Cancel();
             rotator.Cancel();
         }
 

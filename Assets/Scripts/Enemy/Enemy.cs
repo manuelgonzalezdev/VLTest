@@ -29,6 +29,14 @@ namespace VLTest.Enemies
             }
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                Deactivate();
+            }
+        }
+
         public override void Deactivate()
         {
             movement.Stop();

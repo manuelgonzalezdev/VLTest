@@ -25,22 +25,38 @@ namespace VLTest.Enemies.Movement
         private float jumpingSpeed;
         private float jumpingDistance;
         private float jumpingHeight;
+        private float size;
 
-        public JumpingLogic(GameObject enemy, float jumpingSpeed, float jumpingDistance,  float jumpingHeight)
+        public JumpingLogic(GameObject enemy, float jumpingSpeed, float jumpingDistance,  float jumpingHeight) : base(enemy)
         {
-            jumper = GameObjectUtils.GetComponentOrCreateIfNotExists<Jumper>(enemy);
+            jumper = Utils.Utils.GetComponentOrCreateIfNotExists<Jumper>(enemy);
             this.jumpingSpeed = jumpingSpeed;
             this.jumpingDistance = jumpingDistance;
             this.jumpingHeight = jumpingHeight;
+            this.size = enemy.GetComponent<Enemy>().config.size;
         }
 
-        public override void Move(float speed, Action callback)
+        public override bool Move(float speed, Action callback, ObjectPool projectionPool)
         {
-            jumper.Jump(jumpingDistance, jumpingHeight, speed * jumpingSpeed, callback);
+            float size = transform.localScale.z;
+            Vector3 direction = Vector3.forward;
+            Vector3 localDirection = transform.TransformDirection(direction * size);
+            Vector3 destination = transform.position + localDirection;
+            if (MovementIsValid(destination, size, transform.rotation))
+            {
+                this.callback = callback;
+                jumper.Jump(jumpingDistance * size, jumpingHeight * size, speed * jumpingSpeed, OnMovementFinished);
+
+                this.projection = CreateProjection(projectionPool, Vector3.forward);
+                return true;
+            }
+
+            return false;
         }
 
         public override void Cancel()
         {
+            base.Cancel();
             jumper.Cancel();
         }
     }

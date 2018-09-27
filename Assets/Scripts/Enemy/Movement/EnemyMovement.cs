@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
+using VLTest.Utils;
 
 namespace VLTest.Enemies.Movement
 {
@@ -7,12 +9,13 @@ namespace VLTest.Enemies.Movement
     {
         public float speed;
         public int secondaryMovementFrequency;
-
-        private int currentSteps;
-        private EnemyMovementLogic currentMovement;
+        public ObjectPool projectionPool;
 
         private EnemyMovementLogic mainMovement;
         private List<EnemyMovementLogic> secondaryMovements;
+
+        private int currentSteps;
+        private EnemyMovementLogic currentMovement;
 
         public void LoadMovements(EnemyConfig config)
         {
@@ -40,7 +43,7 @@ namespace VLTest.Enemies.Movement
             }
         }
 
-        void Move()
+        private void Move()
         {
             if (currentSteps == secondaryMovementFrequency && secondaryMovements.Count > 0)
             {
@@ -52,12 +55,23 @@ namespace VLTest.Enemies.Movement
             {
                 currentMovement = mainMovement;
             }
-            currentMovement.Move(speed, OnMovementFinished);
+            bool valid = currentMovement.Move(speed, OnMovementFinished, projectionPool);
+
+            if (!valid)
+            {
+                StartCoroutine(WaitAndTryToMoveAgain());
+            }
         }
 
-        void OnMovementFinished()
+        private void OnMovementFinished()
         {
             currentSteps++;
+            Move();
+        }
+
+        private IEnumerator WaitAndTryToMoveAgain()
+        {
+            yield return new WaitForSeconds(1f);
             Move();
         }
 

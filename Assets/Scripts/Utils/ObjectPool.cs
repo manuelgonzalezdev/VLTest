@@ -11,10 +11,9 @@ namespace VLTest.Utils
         public int maxPopulation = 10;
         public Vector3 inactivePosition = new Vector3(9999, 9999, 9999);
 
-        private List<ObjectPoolItem> inactiveItems = new List<ObjectPoolItem>();
-        private List<ObjectPoolItem> activeItems = new List<ObjectPoolItem>();
-
-        private bool populated = false;
+        [System.NonSerialized] private List<ObjectPoolItem> inactiveItems = new List<ObjectPoolItem>();
+        [System.NonSerialized] private List<ObjectPoolItem> activeItems = new List<ObjectPoolItem>();
+        [System.NonSerialized] private bool populated = false;
 
         public int activeItemsCount
         {
@@ -59,7 +58,7 @@ namespace VLTest.Utils
         ObjectPoolItem Create()
         {
             GameObject gO = GameObject.Instantiate(itemPrefab);
-            ObjectPoolItem item = GameObjectUtils.GetComponentOrCreateIfNotExists<ObjectPoolItem>(gO);
+            ObjectPoolItem item = Utils.GetComponentOrCreateIfNotExists<ObjectPoolItem>(gO);
             item.Initialize(this);
             gO.SetActive(false);
             gO.transform.SetPositionAndRotation(inactivePosition, Quaternion.identity);
