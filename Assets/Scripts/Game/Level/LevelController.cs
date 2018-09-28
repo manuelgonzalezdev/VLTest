@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using UnityEngine;
-using VLTest.Game;
-using VLTest.Enemies;
 using SysRandom = System.Random;
 using System.Linq;
+using VLTest.Game;
+using VLTest.Enemies;
 
 namespace VLTest.Level
 {
+    /// <summary>
+    /// Main class to manage enemy spawning with a specified level config.
+    /// It contains the logic to spawn enemies in an random free spawn point of the scene.
+    /// </summary>
     public class LevelController : MonoBehaviour
     {
 
@@ -21,7 +25,7 @@ namespace VLTest.Level
         {
             if (player == null)
             {
-                Player player = FindObjectOfType<Player>();
+                Player.Player player = FindObjectOfType<Player.Player>();
                 if(player != null)
                 {
                     this.player = player.transform;

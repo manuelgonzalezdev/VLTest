@@ -6,6 +6,11 @@ using VLTest.Utils;
 
 namespace VLTest.Enemies
 {
+    /// <summary>
+    /// Main class for enemy entities.
+    /// It's used to handle load configs when an enemy is spawned from Enemy Pool
+    /// and to disable enemy movement when this is deactivated.
+    /// </summary>
     public class Enemy : ObjectPoolItem
     {
         [System.NonSerialized]
@@ -26,14 +31,6 @@ namespace VLTest.Enemies
             if (movement == null)
             {
                 movement = GetComponent<EnemyMovement>();
-            }
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                Deactivate();
             }
         }
 

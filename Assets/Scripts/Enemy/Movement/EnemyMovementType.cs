@@ -6,11 +6,13 @@ namespace VLTest.Enemies.Movement
 {
     public abstract class EnemyMovementType : ScriptableObject
     {
-
-
         public abstract EnemyMovementLogic CreateMovement(GameObject enemy);
     }
 
+    /// <summary>
+    /// Parent class to define differents types of movement.
+    /// Handles movement's projections and callbacks.
+    /// </summary>
     public abstract class EnemyMovementLogic
     {
         protected const string ENEMY_LAYER = "Enemy";

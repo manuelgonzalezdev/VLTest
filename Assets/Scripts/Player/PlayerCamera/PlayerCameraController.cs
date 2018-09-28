@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace VLTest.Player.Cameras {
 
+    /// <summary>
+    /// Manages active camera and the camera switching
+    /// </summary>
     public class PlayerCameraController : MonoBehaviour {
 
         public delegate void OnCameraChangedEvent(PlayerCamera newCamera);

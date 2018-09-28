@@ -6,6 +6,9 @@ using VLTest.Utils;
 
 namespace VLTest.Level
 {
+    /// <summary>
+    /// A Level contains an enemy spawning config and the logic to spawn them
+    /// </summary>
     [CreateAssetMenu(menuName = "Level")]
     public class Level : ScriptableObject
     {

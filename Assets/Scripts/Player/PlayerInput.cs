@@ -4,7 +4,9 @@ using UnityEngine;
 
 namespace VLTest.Player
 {
-
+    /// <summary>
+    /// Controls each player's input during a game
+    /// </summary>
     public class PlayerInput : MonoBehaviour
     {
 

@@ -5,6 +5,12 @@ using VLTest.Utils;
 
 namespace VLTest.Enemies.Movement
 {
+    /// <summary>
+    /// Handles enemy movement logic.
+    /// There're two kind of movements: main (only one) and secondary(one or more). 
+    /// Main movement is executed by default. Secondaries are executed when main movement
+    /// has been performed a determined amount of times (steps).
+    /// </summary>
     public class EnemyMovement : MonoBehaviour
     {
         public float speed;
