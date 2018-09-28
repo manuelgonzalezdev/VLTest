@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 65216239473201448}
   - component: {fileID: 114271147351510012}
   - component: {fileID: 114427111223915676}
+  - component: {fileID: 114495430736743682}
   - component: {fileID: 54847875632330718}
   m_Layer: 10
   m_Name: SimpleCube
@@ -39,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1274431166664374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.6498017, y: 0.49999994, z: 7.220574}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,14 +54,14 @@ MeshRenderer:
   m_GameObject: {fileID: 1274431166664374}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7e395501ff8d8c347bfe513d87231186, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -126,6 +127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {fileID: 114427111223915676}
+  deadEffect: {fileID: 114495430736743682}
+  currentHealth: 0
 --- !u!114 &114427111223915676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,3 +143,15 @@ MonoBehaviour:
   speed: 0
   secondaryMovementFrequency: 0
   projectionPool: {fileID: 11400000, guid: 4f2f463b564c7fa40924f436fe5915e8, type: 2}
+--- !u!114 &114495430736743682
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1274431166664374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d28a2c1b97c2c449973e13e83c84b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyRenderer: {fileID: 23366179355824706}

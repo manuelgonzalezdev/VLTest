@@ -4,13 +4,12 @@ using UnityEngine;
 
 namespace VLTest.Player.Cameras {
 
-    public class RearPlayerCamera : MonoBehaviour {
+    public class RearPlayerCamera : PlayerComponent {
 
-        public PlayerCameraController controller;
 
         private void Update()
         {
-            transform.forward = -controller.currentCamera.transform.forward;
+            transform.forward = -player.cameraController.currentCamera.transform.forward;
         }
 
         private Vector3 GetForwardDirection(PlayerCamera camera)

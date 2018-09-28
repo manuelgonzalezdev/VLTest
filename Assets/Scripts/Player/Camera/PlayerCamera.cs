@@ -5,19 +5,24 @@ using VLTest.Utils;
 
 namespace VLTest.Player.Cameras {
 
-    public class PlayerCamera : MonoBehaviour {
+    public class PlayerCamera : PlayerComponent {
 
         /// <summary>
         /// Factor to apply a sensibility base to each axes.
         /// </summary>
         public const float SENSIBILITY_FACTOR = 50;
 
-        public PlayerCameraConfig config;
-        public PlayerInput input;
         /// <summary>
         /// Camera will orbit around this transform
         /// </summary>
         public Transform pivot;
+
+        public PlayerCameraConfig config;
+        
+        private PlayerInput input
+        {
+            get { return player.input; }
+        }
 
         private float horizontal
         {

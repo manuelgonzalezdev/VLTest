@@ -8,7 +8,7 @@ namespace VLTest.Enemies
     [CreateAssetMenu(menuName = "Enemy/Enemy Config")]
     public class EnemyConfig : ScriptableObject
     {
-        public float life = 1f;
+        public float health = 1f;
         public float size = 1f;
         public float speed = 1f;
         public int secondaryMovementFrequency = 3;

@@ -8,11 +8,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43b5e9dc41a3a474a8f4832deaaa4eb8, type: 3}
-  m_Name: FirstPerson
+  m_Script: {fileID: 11500000, guid: 259c72dd0bc73a44f8c29beca5209c33, type: 3}
+  m_Name: Pistol
   m_EditorClassIdentifier: 
-  horizontalSensibility: 2
-  verticalSensibility: 2
-  distanceToPivot: 0
-  maxY: 45
-  minY: -45
+  weaponName: Pistol
+  firingRate: 1
+  damage: 10
+  dispersion: 0.1
+  bulletsPerShot: 1

@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 114646821142672326}
   - component: {fileID: 114126808219685338}
   - component: {fileID: 114093907870601618}
+  - component: {fileID: 114295834152443868}
   - component: {fileID: 136256364439014524}
   m_Layer: 11
   m_Name: Player
@@ -542,7 +543,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6b87d0404746c4cba03ea07e93f8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 114093907870601618}
+  player: {fileID: 114646821142672326}
+--- !u!114 &114295834152443868
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1433563284141784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb179bec6f27ce14782a585ae85bffaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 114646821142672326}
 --- !u!114 &114646821142672326
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -554,6 +567,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84397b5fcffd7f943b48fd0b638bba56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  input: {fileID: 114126808219685338}
+  cameraController: {fileID: 114093907870601618}
+  attack: {fileID: 114295834152443868}
+  stats: {fileID: 11400000, guid: 5bfe883874325ce4e88896a231b6b147, type: 2}
 --- !u!114 &114726867990707854
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -565,9 +582,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e63c347ea4311544823c2b1dc2678c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 422a272dde8dc644e816eb5577266148, type: 2}
-  input: {fileID: 114126808219685338}
+  player: {fileID: 114646821142672326}
   pivot: {fileID: 4374668325660450}
+  config: {fileID: 11400000, guid: 422a272dde8dc644e816eb5577266148, type: 2}
 --- !u!114 &114967897799386950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -579,9 +596,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e63c347ea4311544823c2b1dc2678c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 8095286b43efa124b9d11e62f5647ca7, type: 2}
-  input: {fileID: 114126808219685338}
+  player: {fileID: 114646821142672326}
   pivot: {fileID: 4861956055122912}
+  config: {fileID: 11400000, guid: 8095286b43efa124b9d11e62f5647ca7, type: 2}
 --- !u!136 &136256364439014524
 CapsuleCollider:
   m_ObjectHideFlags: 1
