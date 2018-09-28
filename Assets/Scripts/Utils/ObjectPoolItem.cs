@@ -21,7 +21,14 @@ namespace VLTest.Utils
         [ContextMenu("Destroy")]
         public virtual void Deactivate()
         {
-            pool.DestroyItem(this);
+            if (pool != null)
+            {
+                pool.DestroyItem(this);
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
 
     }

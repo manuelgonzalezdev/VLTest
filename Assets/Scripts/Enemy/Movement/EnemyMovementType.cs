@@ -36,6 +36,7 @@ namespace VLTest.Enemies.Movement
             if (projection != null)
             {
                 projection.Deactivate();
+                projection = null;
             }
         }
 

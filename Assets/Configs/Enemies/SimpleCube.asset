@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f357888ea30c41478c2de5356cb9414, type: 3}
   m_Name: SimpleCube
   m_EditorClassIdentifier: 
-  life: 1
+  health: 50
   size: 1
   speed: 100
   secondaryMovementFrequency: 3

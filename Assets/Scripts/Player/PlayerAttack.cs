@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using VLTest.Player.Cameras;
+using VLTest.Enemies;
 
 namespace VLTest.Player
 {
@@ -33,7 +33,10 @@ namespace VLTest.Player
         {
             if (player.input.fire && weaponReady)
             {
-                Fire();
+                for (int i = 0; i < currentWeapon.bulletsPerShot; i++)
+                {
+                    Fire();
+                }
             }
             if (!weaponReady)
             {
@@ -45,15 +48,25 @@ namespace VLTest.Player
         {
             Transform cameraTransform = currentCameraTransform;
             RaycastHit hit;
-            float distance;
-            Vector3 hitPosition;
-            if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, MAX_RAYCAST_DISTANCE, enemyLayerMask))
+            Vector3 shotDirection = CreateDispersionShot(cameraTransform, currentWeapon.dispersion);
+            if (Physics.Raycast(cameraTransform.position, shotDirection, out hit, MAX_RAYCAST_DISTANCE, enemyLayerMask))
             {
-                hitPosition = hit.point;
-                distance = hit.distance;
+                Enemy enemy = hit.collider.GetComponent<Enemy>();
+                enemy.SetDamage(currentWeapon.damage);
             }
             remainingCooldown = currentWeapon.firingRate;
         }
+
+        private Vector3 CreateDispersionShot(Transform cameraTransform, float dispersionRate)
+        {
+            Vector2 randomDispersion = Random.insideUnitCircle * dispersionRate;
+            Vector3 dispersion = cameraTransform.forward + (cameraTransform.right * randomDispersion.x) + (cameraTransform.up * randomDispersion.y);
+            Vector3 dispersionPoint = cameraTransform.position + dispersion;
+            Vector3 dispersionDirection = (dispersionPoint - cameraTransform.position).normalized;
+            Debug.DrawRay(cameraTransform.position, dispersionDirection * MAX_RAYCAST_DISTANCE, Color.red, 0.5f);
+            return dispersionDirection;
+        }
+
 
         private void OnEnable()
         {

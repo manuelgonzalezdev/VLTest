@@ -37,6 +37,7 @@ namespace VLTest.Level
             finalPosition.y -= 0.5f - (enemyConfig.size * 0.5f);
             Enemy enemy = enemyPool.Spawn(finalPosition, rotation).GetComponent<Enemy>();
             enemy.LoadConfig(enemyConfig);
+            enemy.MoveTowards();
             return enemy;
         }
 

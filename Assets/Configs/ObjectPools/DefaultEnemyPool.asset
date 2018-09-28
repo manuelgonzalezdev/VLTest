@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: DefaultEnemyPool
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 1274431166664374, guid: acb5f251a3110424d89fbc7f7f7f0665, type: 2}
-  minPopulation: 5
-  maxPopulation: 10
+  minPopulation: 10
+  maxPopulation: 20
   inactivePosition: {x: 9999, y: 9999, z: 9999}

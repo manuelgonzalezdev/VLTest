@@ -13,29 +13,20 @@ namespace VLTest.Enemies
     /// </summary>
     public class Enemy : ObjectPoolItem
     {
-        [System.NonSerialized]
         public EnemyConfig config;
         public EnemyMovement movement;
         public EnemyDeadEffect deadEffect;
 
+        [SerializeField]
         private float currentHealth;
 
         public void LoadConfig(EnemyConfig config)
         {
+            this.config = config;
             gameObject.name = config.name;
             currentHealth = config.health;
-            this.config = config;
             transform.localScale = Vector3.one * config.size;
             movement.LoadMovements(config);
-            movement.Play();
-        }
-
-        private void Awake()
-        {
-            if (movement == null)
-            {
-                movement = GetComponent<EnemyMovement>();
-            }
         }
 
         public void SetDamage(float damage)
@@ -51,11 +42,29 @@ namespace VLTest.Enemies
             }
         }
 
+        public void MoveTowards()
+        {
+            movement.Play();
+        }
+
         public override void Deactivate()
         {
             movement.Stop();
             base.Deactivate();
         }
+
+        private void Awake()
+        {
+            if (movement == null)
+            {
+                movement = GetComponent<EnemyMovement>();
+            }
+            if (config != null)
+            {
+                LoadConfig(config);
+            }
+        }
+
 
     }
 }
