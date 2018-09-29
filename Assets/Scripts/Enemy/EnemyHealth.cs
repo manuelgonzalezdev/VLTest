@@ -13,13 +13,10 @@ namespace VLTest.Enemies
             if (health > 0)
             {
                 health = Mathf.Max(0, health - damage);
+                enemy.hitEffect.PlayHitEffect();
                 if (health == 0)
                 {
                     enemy.Kill();
-                }
-                else
-                {
-                    enemy.hitEffect.PlayHitEffect();
                 }
             }
         }

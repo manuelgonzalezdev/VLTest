@@ -15,5 +15,10 @@ namespace VLTest.UI
             SceneManager.LoadScene(scenes.gameScene);
         }
 
+        public void Exit()
+        {
+            Application.Quit();
+        }
+
     }
 }
