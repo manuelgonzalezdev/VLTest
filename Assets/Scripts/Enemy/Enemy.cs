@@ -22,6 +22,7 @@ namespace VLTest.Enemies
         public EnemyMovement movement;
         public EnemyAttack attack;
         public EnemyDeadEffect deadEffect;
+        public EnemyHitEffect hitEffect;
         public new Collider collider;
 
         public void LoadConfig(EnemyConfig config)

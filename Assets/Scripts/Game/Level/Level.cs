@@ -4,7 +4,7 @@ using UnityEngine;
 using VLTest.Enemies;
 using VLTest.Utils;
 
-namespace VLTest.Level
+namespace VLTest.Game.Level
 {
     /// <summary>
     /// A Level contains an enemy spawning config and the logic to spawn them

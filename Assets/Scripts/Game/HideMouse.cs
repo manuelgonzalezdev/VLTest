@@ -10,6 +10,8 @@ namespace VLTest.Game
         private void OnEnable()
         {
             GameStateManager.OnGameStateChanges += OnGameStateChanged;
+            bool hideMouse = GameStateManager.currentState == GameStateManager.GameState.GAME;
+            SetCursorVisibility(hideMouse);
         }
 
         private void OnDisable()

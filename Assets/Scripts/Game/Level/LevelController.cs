@@ -6,7 +6,7 @@ using System.Linq;
 using VLTest.Game;
 using VLTest.Enemies;
 
-namespace VLTest.Level
+namespace VLTest.Game.Level
 {
     /// <summary>
     /// Main class to manage enemy spawning with a specified level config.
@@ -14,8 +14,12 @@ namespace VLTest.Level
     /// </summary>
     public class LevelController : MonoBehaviour
     {
+        public delegate void TitanEvent();
+        public static event TitanEvent OnTitanSpawned;
+
         public Level level;
         public Scenes scenes;
+        public float secondsToWaitBeforeToWin = 1f;
         public Transform player;
         public SpawnPoint[] spawnPoints;
 
@@ -113,6 +117,10 @@ namespace VLTest.Level
                     {
                         enemyConfig = level.titanConfig;
                         titanSpawned = true;
+                        if (OnTitanSpawned != null)
+                        {
+                            OnTitanSpawned();
+                        }
                     }
                     yield return StartCoroutine(FindFreeSpawnPointAndSpawn(enemyConfig));
                 }
@@ -165,7 +173,7 @@ namespace VLTest.Level
 
         private IEnumerator WaitAndWin()
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(secondsToWaitBeforeToWin);
             GameStateManager.currentState = GameStateManager.GameState.WIN;
         }
 

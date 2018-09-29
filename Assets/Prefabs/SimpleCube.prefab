@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 54847875632330718}
   - component: {fileID: 114463188243404874}
   - component: {fileID: 114113169789710672}
+  - component: {fileID: 114790970180140278}
   m_Layer: 10
   m_Name: SimpleCube
   m_TagString: Untagged
@@ -146,8 +147,8 @@ MonoBehaviour:
   movement: {fileID: 114427111223915676}
   attack: {fileID: 114463188243404874}
   deadEffect: {fileID: 114495430736743682}
+  hitEffect: {fileID: 114790970180140278}
   collider: {fileID: 65216239473201448}
-  currentHealth: 0
 --- !u!114 &114427111223915676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -188,3 +189,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 114271147351510012}
   enemyRenderer: {fileID: 23366179355824706}
+--- !u!114 &114790970180140278
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1274431166664374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 538e428af0efdde4a86b77c3cd5d9706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyRenderer: {fileID: 23366179355824706}
+  hitColor: {r: 0.9098039, g: 0, b: 0, a: 1}

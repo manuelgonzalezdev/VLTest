@@ -17,6 +17,10 @@ namespace VLTest.Enemies
                 {
                     enemy.Kill();
                 }
+                else
+                {
+                    enemy.hitEffect.PlayHitEffect();
+                }
             }
         }
 

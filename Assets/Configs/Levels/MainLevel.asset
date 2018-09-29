@@ -11,12 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eb6dc1b15b3c0e4ba8d756123e2c61c, type: 3}
   m_Name: MainLevel
   m_EditorClassIdentifier: 
-  spawnFrequencyRange: {x: 0.5, y: 2}
+  spawnFrequencyRange: {x: 0.5, y: 3}
   maxEnemiesInScene: 40
-  enemiesKilledBeforeSpawnTitan: 2
+  enemiesKilledBeforeSpawnTitan: 30
   enemyPool: {fileID: 11400000, guid: b4503efd3e923924bb530ca95785a093, type: 2}
   enemyConfigs:
-  - {fileID: 11400000, guid: 4bbb6db6ea9e67c4784945f209a6a180, type: 2}
   - {fileID: 11400000, guid: 1046e9f1d93a22642a8303d56130fb88, type: 2}
+  - {fileID: 11400000, guid: 4bbb6db6ea9e67c4784945f209a6a180, type: 2}
   - {fileID: 11400000, guid: f190b35aae27ce64ebd94066cd54d8fd, type: 2}
   titanConfig: {fileID: 11400000, guid: 706260e7192e54a4aabe1ceca9123e46, type: 2}

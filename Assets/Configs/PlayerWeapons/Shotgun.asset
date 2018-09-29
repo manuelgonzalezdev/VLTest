@@ -13,6 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Shotgun
   firingRate: 1
-  damage: 40
+  damage: 50
   dispersion: 0.1
-  bulletsPerShot: 3
+  bulletsPerShot: 4

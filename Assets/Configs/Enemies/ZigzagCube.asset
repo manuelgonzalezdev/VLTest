@@ -14,9 +14,9 @@ MonoBehaviour:
   health: 100
   damage: 20
   size: 1
-  speed: 300
+  speed: 200
   secondaryMovementFrequency: 2
-  spawnProbability: 0.5
+  spawnProbability: 0.3
   mainMovement: {fileID: 11400000, guid: 7f2cd1849a5640f4eb79ce816832c1f3, type: 2}
   secondayMovements:
   - {fileID: 11400000, guid: 44d253ed985633449b79f19fa1b73eb0, type: 2}
