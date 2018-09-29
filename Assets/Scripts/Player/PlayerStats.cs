@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace VLTest.Player
 {
@@ -12,10 +13,11 @@ namespace VLTest.Player
 
         public float maxHealth = 100;
         public Weapon initialWeapon;
-        public Weapon[] availableWeapons;
+        public List<Weapon> availableWeapons;
 
-        private float _currentHealth;
+        [System.NonSerialized] private bool initialized = false;
 
+        [System.NonSerialized] private float _currentHealth;
         public float currentHealth
         {
             get
@@ -40,8 +42,7 @@ namespace VLTest.Player
             }
         }
 
-        private Weapon _currentWeapon;
-
+        [System.NonSerialized] private Weapon _currentWeapon;
         public Weapon currentWeapon
         {
             get
@@ -66,12 +67,16 @@ namespace VLTest.Player
             }
         }
 
-        [System.NonSerialized] private bool initialized = false;
+
 
         private void Initialize()
         {
             _currentHealth = maxHealth;
             _currentWeapon = initialWeapon;
+            if (!availableWeapons.Contains(initialWeapon))
+            {
+                availableWeapons.Insert(0, initialWeapon);
+            }
             initialized = true;
         }
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using SysRandom = System.Random;
 using System.Linq;
 using VLTest.Game;
@@ -13,13 +14,20 @@ namespace VLTest.Level
     /// </summary>
     public class LevelController : MonoBehaviour
     {
-
         public Level level;
+        public Scenes scenes;
         public Transform player;
         public SpawnPoint[] spawnPoints;
 
         private bool spawning = false;
         private SpawnPoint selectedSpawnPoint;
+        private int enemiesKilled;
+        private bool titanSpawned;
+
+        private bool titanMustBeSpawned
+        {
+            get { return enemiesKilled >= level.enemiesKilledBeforeSpawnTitan && !titanSpawned; }
+        }
 
         private void Awake()
         {
@@ -40,13 +48,23 @@ namespace VLTest.Level
         private void OnEnable()
         {
             GameStateManager.OnGameStateChanges += OnGameStateChanged;
-            // TEMPORAL
+            Enemy.OnEnemyKilled += OnEnemyKilled;
             GameStateManager.currentState = GameStateManager.GameState.GAME;
         }
 
         private void OnDisable()
         {
             GameStateManager.OnGameStateChanges -= OnGameStateChanged;
+            Enemy.OnEnemyKilled -= OnEnemyKilled;
+        }
+
+        private void OnEnemyKilled(EnemyConfig config)
+        {
+            enemiesKilled++;
+            if (config.Equals(level.titanConfig))
+            {
+                StartCoroutine(WaitAndWin());
+            }
         }
 
         private void OnGameStateChanged(GameStateManager.GameState last, GameStateManager.GameState current)
@@ -62,12 +80,18 @@ namespace VLTest.Level
             else
             {
                 StopAllCoroutines();
+                if (current == GameStateManager.GameState.MENU)
+                {
+                    SceneManager.LoadScene(scenes.menuScene);
+                }
             }
         }
 
         private void InitializeLevel()
         {
             level.Initialize();
+            enemiesKilled = 0;
+            titanSpawned = false;
         }
 
         private void SpawnEnemy()
@@ -80,27 +104,38 @@ namespace VLTest.Level
 
         private IEnumerator SpawnLoop()
         {
-            WaitForSeconds waiting = new WaitForSeconds(level.spawnFrequencyInSeconds);
             while (Application.isPlaying)
             {
                 if (!level.maxEnemiesInSceneReached)
                 {
-                    yield return StartCoroutine(FindFreeSpawnPointAndSpawn());
+                    EnemyConfig enemyConfig = null;
+                    if (titanMustBeSpawned)
+                    {
+                        enemyConfig = level.titanConfig;
+                        titanSpawned = true;
+                    }
+                    yield return StartCoroutine(FindFreeSpawnPointAndSpawn(enemyConfig));
                 }
+                WaitForSeconds waiting = new WaitForSeconds(Random.Range(level.spawnFrequencyRange.x, level.spawnFrequencyRange.y));
                 yield return waiting;
             }
         }
 
-        private IEnumerator FindFreeSpawnPointAndSpawn()
+        /// <summary>
+        /// Waits until a free spawn point is found and spawns an enemy on that point with a specified config
+        /// </summary>
+        /// <param name="enemyConfig">Config used to spawn next enemy. Null value means a random config</param>
+        private IEnumerator FindFreeSpawnPointAndSpawn(EnemyConfig enemyConfig = null)
         {
             spawning = true;
-            EnemyConfig config = level.GetRandomEnemyConfig();
+            EnemyConfig config = enemyConfig == null ? level.GetRandomEnemyConfig() : enemyConfig;
             yield return StartCoroutine(GetRandomSpawnPoint(config));
             if (selectedSpawnPoint != null)
             {
-                Vector3 position = selectedSpawnPoint.getPoint();
-                Quaternion rotation = Quaternion.LookRotation(player.position - position);
-                level.SpawnEnemy(config, position, rotation);
+                Vector3 spawnPosition = selectedSpawnPoint.getPoint();
+                Vector3 playerPosition = new Vector3(player.position.x, spawnPosition.y, player.position.z);
+                Quaternion rotation = Quaternion.LookRotation(playerPosition - spawnPosition);
+                level.SpawnEnemy(config, spawnPosition, rotation);
             }
             spawning = false;
         }
@@ -126,6 +161,12 @@ namespace VLTest.Level
                     yield return waiting;
                 }
             }
+        }
+
+        private IEnumerator WaitAndWin()
+        {
+            yield return new WaitForSeconds(2f);
+            GameStateManager.currentState = GameStateManager.GameState.WIN;
         }
 
     }

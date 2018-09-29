@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: MachineGun
   m_EditorClassIdentifier: 
   weaponName: Machine Gun
-  firingRate: 0.05
-  damage: 50
-  dispersion: 0
+  firingRate: 0.1
+  damage: 10
+  dispersion: 0.05
   bulletsPerShot: 1

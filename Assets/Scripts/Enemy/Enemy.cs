@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using VLTest.Enemies.Movement;
+using VLTest.Game;
 using VLTest.Utils;
 
 namespace VLTest.Enemies
@@ -9,42 +10,53 @@ namespace VLTest.Enemies
     /// <summary>
     /// Main class for enemy entities.
     /// It's used to handle load configs when an enemy is spawned from Enemy Pool
-    /// and to disable enemy movement when this is deactivated.
+    /// and to disable enemy movement when this is deactivated or killed.
     /// </summary>
     public class Enemy : ObjectPoolItem
     {
-        public EnemyConfig config;
-        public EnemyMovement movement;
-        public EnemyDeadEffect deadEffect;
+        public delegate void OnEnemyeadEvent(EnemyConfig config);
+        public static event OnEnemyeadEvent OnEnemyKilled;
 
-        [SerializeField]
-        private float currentHealth;
+        public EnemyConfig config;
+        public EnemyHealth enemyHealth;
+        public EnemyMovement movement;
+        public EnemyAttack attack;
+        public EnemyDeadEffect deadEffect;
+        public new Collider collider;
 
         public void LoadConfig(EnemyConfig config)
         {
             this.config = config;
             gameObject.name = config.name;
-            currentHealth = config.health;
+            enemyHealth.SetHealth(config.health);
             transform.localScale = Vector3.one * config.size;
             movement.LoadMovements(config);
         }
 
-        public void SetDamage(float damage)
+        public void Kill()
         {
-            if (currentHealth > 0)
+            if (OnEnemyKilled != null)
             {
-                currentHealth = Mathf.Max(0, currentHealth - damage);
-                if (currentHealth == 0)
-                {
-                    movement.Stop();
-                    deadEffect.PlayDeadEffect(Deactivate);
-                }
+                OnEnemyKilled(this.config);
             }
+            Dead();
+        }
+
+        public void Dead()
+        {
+            movement.Stop();
+            deadEffect.PlayDeadEffect(Deactivate);
         }
 
         public void MoveTowards()
         {
             movement.Play();
+        }
+
+        public override void Activate()
+        {
+            base.Activate();
+            collider.enabled = true;
         }
 
         public override void Deactivate()
@@ -55,14 +67,34 @@ namespace VLTest.Enemies
 
         private void Awake()
         {
-            if (movement == null)
-            {
-                movement = GetComponent<EnemyMovement>();
-            }
+            collider = GetComponent<Collider>();
             if (config != null)
             {
                 LoadConfig(config);
             }
+        }
+
+        private void OnEnable()
+        {
+            GameStateManager.OnGameStateChanges += OnGameStateChanged;
+        }
+
+        private void OnDisable()
+        {
+            GameStateManager.OnGameStateChanges -= OnGameStateChanged;
+        }
+
+        private void OnGameStateChanged(GameStateManager.GameState last, GameStateManager.GameState newState)
+        {
+            if (newState == GameStateManager.GameState.WIN || newState == GameStateManager.GameState.LOSE)
+            {
+                Dead();
+            }
+            else if (newState == GameStateManager.GameState.MENU)
+            {
+                Deactivate();
+            }
+            
         }
 
 

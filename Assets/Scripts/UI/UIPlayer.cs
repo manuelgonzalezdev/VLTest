@@ -6,7 +6,7 @@ using VLTest.Player;
 
 namespace VLTest.UI
 {
-    public class UIPlayerPanel : MonoBehaviour
+    public class UIPlayer : MonoBehaviour
     {
         public PlayerStats stats;
         public Text currentWeaponLabel;
@@ -29,7 +29,7 @@ namespace VLTest.UI
 
         private void SetHealth(float health)
         {
-            float percentage = health * stats.maxHealth;
+            float percentage = health / stats.maxHealth;
             healthBar.fillAmount = percentage;
         }
 

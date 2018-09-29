@@ -11,6 +11,8 @@ namespace VLTest.Player
         private const float MAX_RAYCAST_DISTANCE = 100f;
 
         public string enemyLayer = "Enemy";
+        public ShotEffect shotEffect;
+            
 
         private Transform currentCameraTransform
         {
@@ -18,11 +20,11 @@ namespace VLTest.Player
         }
         private Weapon currentWeapon;
         private float remainingCooldown;
+        private int enemyLayerMask;
         private bool weaponReady
         {
             get { return remainingCooldown <= 0; }
         }
-        private int enemyLayerMask;
 
         private void Awake()
         {
@@ -44,17 +46,21 @@ namespace VLTest.Player
             }
         }
 
-        void Fire()
+        private void Fire()
         {
             Transform cameraTransform = currentCameraTransform;
             RaycastHit hit;
             Vector3 shotDirection = CreateDispersionShot(cameraTransform, currentWeapon.dispersion);
             if (Physics.Raycast(cameraTransform.position, shotDirection, out hit, MAX_RAYCAST_DISTANCE, enemyLayerMask))
             {
-                Enemy enemy = hit.collider.GetComponent<Enemy>();
-                enemy.SetDamage(currentWeapon.damage);
+                EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
+                enemyHealth.SetDamage(currentWeapon.damage);
             }
             remainingCooldown = currentWeapon.firingRate;
+            if (shotEffect != null)
+            {
+                shotEffect.PlayEffect();
+            }
         }
 
         private Vector3 CreateDispersionShot(Transform cameraTransform, float dispersionRate)
@@ -82,7 +88,7 @@ namespace VLTest.Player
         private void OnWeapongChanged(Weapon weapon)
         {
             currentWeapon = weapon;
-            remainingCooldown = currentWeapon.firingRate;
+            remainingCooldown = 0;
         }
 
     }

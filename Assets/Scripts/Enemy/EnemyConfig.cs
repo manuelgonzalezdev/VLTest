@@ -9,6 +9,7 @@ namespace VLTest.Enemies
     public class EnemyConfig : ScriptableObject
     {
         public float health = 1f;
+        public float damage = 1f;
         public float size = 1f;
         public float speed = 1f;
         public int secondaryMovementFrequency = 3;

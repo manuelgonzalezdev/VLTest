@@ -26,6 +26,8 @@ GameObject:
   - component: {fileID: 114427111223915676}
   - component: {fileID: 114495430736743682}
   - component: {fileID: 54847875632330718}
+  - component: {fileID: 114463188243404874}
+  - component: {fileID: 114113169789710672}
   m_Layer: 10
   m_Name: SimpleCube
   m_TagString: Untagged
@@ -115,6 +117,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114113169789710672
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1274431166664374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21ceb32c597fa7e48a74f713d5b11de7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 114271147351510012}
+  health: 0
 --- !u!114 &114271147351510012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,8 +142,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: f190b35aae27ce64ebd94066cd54d8fd, type: 2}
+  enemyHealth: {fileID: 114113169789710672}
   movement: {fileID: 114427111223915676}
+  attack: {fileID: 114463188243404874}
   deadEffect: {fileID: 114495430736743682}
+  collider: {fileID: 65216239473201448}
   currentHealth: 0
 --- !u!114 &114427111223915676
 MonoBehaviour:
@@ -141,9 +159,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d13e08ef9cba3cb49a2aaab78ffac5e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 114271147351510012}
   speed: 0
   secondaryMovementFrequency: 0
   projectionPool: {fileID: 11400000, guid: 4f2f463b564c7fa40924f436fe5915e8, type: 2}
+--- !u!114 &114463188243404874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1274431166664374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28b48db690b07f042bb0f44fce859594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 114271147351510012}
 --- !u!114 &114495430736743682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,4 +186,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2d28a2c1b97c2c449973e13e83c84b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 114271147351510012}
   enemyRenderer: {fileID: 23366179355824706}

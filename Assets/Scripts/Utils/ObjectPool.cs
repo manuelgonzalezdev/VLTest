@@ -43,19 +43,10 @@ namespace VLTest.Utils
             {
                 item = inactiveItems[0];
                 inactiveItems.Remove(item);
-                if (inactiveItems.Contains(item))
-                {
-                    Debug.LogError("Ding!");
-                }
             }
             else
             {
                 item = Create();
-            }
-
-            if (item == null)
-            {
-                Debug.LogError("Ding!");
             }
 
             activeItems.Add(item);
@@ -81,10 +72,6 @@ namespace VLTest.Utils
             activeItems.Remove(item);
             if (inactiveItems.Count < maxPopulation)
             {
-                if (inactiveItems.Contains(item))
-                {
-                    Debug.LogError("Ding!");
-                }
                 inactiveItems.Add(item);
                 item.gameObject.SetActive(false);
                 item.transform.SetPositionAndRotation(inactivePosition, Quaternion.identity);
@@ -93,22 +80,6 @@ namespace VLTest.Utils
             {
                 GameObject.Destroy(item.gameObject);
             }
-            if (ItemNull())
-            {
-                Debug.LogError("Ding!");
-            }
-        }
-
-        bool ItemNull()
-        {
-            foreach (ObjectPoolItem item in inactiveItems)
-            {
-                if(item == null)
-                {
-                    return true;
-                }
-            }
-            return false;
         }
 
         public void Clear()

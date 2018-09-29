@@ -11,10 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f357888ea30c41478c2de5356cb9414, type: 3}
   m_Name: SimpleCube
   m_EditorClassIdentifier: 
-  health: 50
+  health: 100
+  damage: 20
   size: 1
-  speed: 100
-  secondaryMovementFrequency: 3
-  spawnProbability: 0.7
+  speed: 200
+  secondaryMovementFrequency: 1
+  spawnProbability: 0.8
   mainMovement: {fileID: 11400000, guid: 7f2cd1849a5640f4eb79ce816832c1f3, type: 2}
   secondayMovements: []

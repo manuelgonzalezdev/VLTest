@@ -11,10 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f357888ea30c41478c2de5356cb9414, type: 3}
   m_Name: TitanCube
   m_EditorClassIdentifier: 
-  life: 1
-  size: 3
+  health: 1000
+  damage: 100
+  size: 6
   speed: 50
-  secondaryMovementFrequency: 3
+  secondaryMovementFrequency: 1
   spawnProbability: 1
   mainMovement: {fileID: 11400000, guid: 7f2cd1849a5640f4eb79ce816832c1f3, type: 2}
   secondayMovements: []

@@ -3,7 +3,7 @@ using System;
 
 namespace VLTest.Enemies
 {
-    public class EnemyDeadEffect : MonoBehaviour
+    public class EnemyDeadEffect : EnemyComponent
     {
         private const float INITIAL_ALPHA = 1f;
         private const float EFFECT_DURATION = 0.5f;
@@ -22,6 +22,7 @@ namespace VLTest.Enemies
             }
             this.callback = callback;
             SetAlpha(1f);
+            enemy.collider.enabled = false;
             running = true;
         }
 

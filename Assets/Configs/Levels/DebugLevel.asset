@@ -11,8 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eb6dc1b15b3c0e4ba8d756123e2c61c, type: 3}
   m_Name: DebugLevel
   m_EditorClassIdentifier: 
-  spawnFrequencyInSeconds: 3
-  maxEnemiesInScene: 1
+  spawnFrequencyRange: {x: 0.5, y: 1}
+  maxEnemiesInScene: 2
+  enemiesKilledBeforeSpawnTitan: 1
   enemyPool: {fileID: 11400000, guid: b4503efd3e923924bb530ca95785a093, type: 2}
   enemyConfigs:
   - {fileID: 11400000, guid: f190b35aae27ce64ebd94066cd54d8fd, type: 2}

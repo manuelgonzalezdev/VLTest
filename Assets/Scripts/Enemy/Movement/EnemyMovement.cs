@@ -11,7 +11,7 @@ namespace VLTest.Enemies.Movement
     /// Main movement is executed by default. Secondaries are executed when main movement
     /// has been performed a determined amount of times (steps).
     /// </summary>
-    public class EnemyMovement : MonoBehaviour
+    public class EnemyMovement : EnemyComponent
     {
         public float speed;
         public int secondaryMovementFrequency;
@@ -46,6 +46,7 @@ namespace VLTest.Enemies.Movement
             if (currentMovement != null)
             {
                 currentMovement.Cancel();
+                currentMovement = null;
             }
         }
 

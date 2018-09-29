@@ -9,12 +9,18 @@ namespace VLTest.Level
     /// <summary>
     /// A Level contains an enemy spawning config and the logic to spawn them
     /// </summary>
+    /// 
     [CreateAssetMenu(menuName = "Level")]
     public class Level : ScriptableObject
     {
-        public float spawnFrequencyInSeconds = 2;
+        /// <summary>
+        /// Spawn frequency (in seconds) is a random value between a minimum (x) and maximum (y) value.
+        /// This random value will be recalculated when an enemy is spawned.
+        /// </summary>
+        [Tooltip("Spawn frequency (in seconds) is a random value between a minimum (x) and maximum (y) value. This random value will be recalculated when an enemy is spawned.")]
+        public Vector2 spawnFrequencyRange = new Vector2(1f, 4f);
         public int maxEnemiesInScene = 20;
-
+        public int enemiesKilledBeforeSpawnTitan = 30;
         public ObjectPool enemyPool;
 
         public List<EnemyConfig> enemyConfigs;
@@ -31,6 +37,11 @@ namespace VLTest.Level
             enemyPool.Populate();
         }
 
+        public void ClearLevel()
+        {
+            enemyPool.Clear();
+        }
+
         public Enemy SpawnEnemy(EnemyConfig enemyConfig, Vector3 position, Quaternion rotation)
         {
             Vector3 finalPosition = position;
@@ -43,11 +54,15 @@ namespace VLTest.Level
 
         public EnemyConfig GetRandomEnemyConfig()
         {
-            float probability = Random.Range(0f, 1f);
             for (int i = 0; i < enemyConfigs.Count; i++)
             {
                 EnemyConfig config = enemyConfigs[i];
-                if (config.spawnProbability >= probability)
+                bool isLastElement = i == (enemyConfigs.Count - 1);
+                if (isLastElement)
+                {
+                    return config;
+                }
+                else if (config.spawnProbability >= Random.Range(0f, 1f))
                 {
                     return config;
                 }
