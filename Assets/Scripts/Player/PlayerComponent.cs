@@ -8,5 +8,16 @@ namespace VLTest.Player {
         #region MEMBERS
         public Player player;
         #endregion
+
+        #region PRIVATE METHODS
+        private void OnEnable()
+        {
+            if (player == null)
+            {
+                player = GetComponent<Player>();
+            }
+        }
+        #endregion
+
     }
 }

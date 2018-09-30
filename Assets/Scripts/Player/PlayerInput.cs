@@ -7,9 +7,10 @@ namespace VLTest.Player
     /// <summary>
     /// Controls each player's input during a game
     /// </summary>
-    public class PlayerInput : MonoBehaviour
+    public class PlayerInput : PlayerComponent
     {
         #region MEMBERS
+
         [SerializeField]
         private string horizontalAxisInput = "Mouse X";
         [SerializeField]
@@ -21,11 +22,7 @@ namespace VLTest.Player
         [SerializeField]
         private string weaponScrollInput = "Mouse ScrollWheel";
         [SerializeField]
-        private string weapon1Input = "Weapon 1";
-        [SerializeField]
-        private string weapon2Input = "Weapon 2";
-        [SerializeField]
-        private string weapon3Input = "Weapon 3";
+        private string weaponPrefix = "Weapon {0}";
 
         [HideInInspector]
         public float horizontal;
@@ -38,11 +35,7 @@ namespace VLTest.Player
         [HideInInspector]
         public bool cameraSwitch;
         [HideInInspector]
-        public bool weapon1;
-        [HideInInspector]
-        public bool weapon2;
-        [HideInInspector]
-        public bool weapon3;
+        public int weaponKeyPressed;
         #endregion
 
         #region PRIVATE METHODS
@@ -53,9 +46,17 @@ namespace VLTest.Player
             weaponScroll = Input.GetAxis(weaponScrollInput);
             fire = Input.GetAxis(fireInput) != 0;
             cameraSwitch = Input.GetAxis(cameraSwitchInput) != 0;
-            weapon1 = Input.GetAxis(weapon1Input) != 0;
-            weapon2 = Input.GetAxis(weapon2Input) != 0;
-            weapon3 = Input.GetAxis(weapon3Input) != 0;
+
+            weaponKeyPressed = -1;
+            for (int i = 0; i < player.stats.availableWeapons.Count; i++)
+            {
+                string axis = string.Format(weaponPrefix, (i + 1));
+                weaponKeyPressed = Input.GetAxis(axis) != 0 ? i : -1;
+                if (weaponKeyPressed != -1)
+                {
+                    break;
+                }
+            }
         }
         #endregion
     }

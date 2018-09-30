@@ -650,22 +650,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cc0ecd1e15dc0046984c78af52b6e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 114646821142672326}
   horizontalAxisInput: Mouse X
   verticalAxisInput: Mouse Y
   fireInput: Fire
   cameraSwitchInput: Camera Switch
   weaponScrollInput: Mouse ScrollWheel
-  weapon1Input: Weapon 1
-  weapon2Input: Weapon 2
-  weapon3Input: Weapon 3
+  weaponPrefix: Weapon {0}
   horizontal: 0
   vertical: 0
   weaponScroll: 0
   fire: 0
   cameraSwitch: 0
-  weapon1: 0
-  weapon2: 0
-  weapon3: 0
+  weaponKeyPressed: 0
 --- !u!114 &114229436738129984
 MonoBehaviour:
   m_ObjectHideFlags: 1
