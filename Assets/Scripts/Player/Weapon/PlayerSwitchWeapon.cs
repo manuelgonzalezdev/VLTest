@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VLTest.Player
+namespace VLTest.Player.Weapons
 {
     public class PlayerSwitchWeapon : PlayerComponent
     {

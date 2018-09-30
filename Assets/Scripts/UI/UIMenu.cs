@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using VLTest.Game;
+using VLTest.Commons;
 
 namespace VLTest.UI
 {

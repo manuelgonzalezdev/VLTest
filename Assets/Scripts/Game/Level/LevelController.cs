@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using SysRandom = System.Random;
 using System.Linq;
-using VLTest.Game;
+using VLTest.Commons;
 using VLTest.Enemies;
 
 namespace VLTest.Game.Level

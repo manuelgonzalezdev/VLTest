@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using VLTest.Enemies;
+using VLTest.Player.Weapons;
+using VLTest.Utils;
 
 namespace VLTest.Player
 {
@@ -9,9 +11,13 @@ namespace VLTest.Player
     {
         #region MEMBERS
         private const float MAX_RAYCAST_DISTANCE = 100f;
+        private const float ANTIOVERLAP_SPACE = 0.05f;
 
-        public string enemyLayer = "Enemy";
+        public string enemyLayerName = "Enemy";
+        public string scenarioLayerName = "Scenario";
+
         public ShotEffect shotEffect;
+        public ObjectPool bulletDecalPool;
             
         private Transform currentCameraTransform
         {
@@ -19,7 +25,8 @@ namespace VLTest.Player
         }
         private Weapon currentWeapon;
         private float remainingCooldown;
-        private int enemyLayerMask;
+        private int shotLayerMask;
+        private int enemyLayer;
         private bool weaponReady
         {
             get { return remainingCooldown <= 0; }
@@ -29,7 +36,9 @@ namespace VLTest.Player
         #region PRIVATE METHODS
         private void Awake()
         {
-            enemyLayerMask = LayerMask.GetMask(enemyLayer);
+            shotLayerMask = LayerMask.GetMask(enemyLayerName, scenarioLayerName);
+            enemyLayer = LayerMask.NameToLayer(enemyLayerName);
+            bulletDecalPool.Populate();
         }
 
         private void Update()
@@ -52,10 +61,18 @@ namespace VLTest.Player
             Transform cameraTransform = currentCameraTransform;
             RaycastHit hit;
             Vector3 shotDirection = CreateDispersionShot(cameraTransform, currentWeapon.dispersion);
-            if (Physics.Raycast(cameraTransform.position, shotDirection, out hit, MAX_RAYCAST_DISTANCE, enemyLayerMask))
+            if (Physics.Raycast(cameraTransform.position, shotDirection, out hit, MAX_RAYCAST_DISTANCE, shotLayerMask))
             {
-                EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
-                enemyHealth.SetDamage(currentWeapon.damage);
+                bool isEnemy = hit.collider.gameObject.layer == enemyLayer;
+                if (isEnemy)
+                {
+                    EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
+                    enemyHealth.SetDamage(currentWeapon.damage);
+                }
+                else
+                {
+                    CreateBulletDecal(hit);
+                }
             }
             remainingCooldown = currentWeapon.firingRate;
             if (shotEffect != null)
@@ -74,6 +91,13 @@ namespace VLTest.Player
             Debug.DrawRay(cameraTransform.position, dispersionDirection * MAX_RAYCAST_DISTANCE, Color.red, 0.5f);
 #endif
             return dispersionDirection;
+        }
+
+        private void CreateBulletDecal(RaycastHit hit)
+        {
+            ObjectPoolItem decal = bulletDecalPool.Spawn(hit.point, Quaternion.identity);
+            decal.transform.forward = hit.normal;
+            decal.transform.position = decal.transform.position + (decal.transform.forward * ANTIOVERLAP_SPACE); // Separates a litte amount of space to avoid overlap
         }
 
 

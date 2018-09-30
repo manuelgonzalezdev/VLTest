@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72620764b8f89bd4582aeca12a73be90, type: 3}
+  m_Name: BulletDecalPool
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 1066786430218370, guid: 058b00400fd08494bb1417baa1550714, type: 2}
+  minPopulation: 20
+  maxPopulation: 40
+  inactivePosition: {x: 8000, y: 9000, z: 8000}

@@ -1,37 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VLTest.Utils;
 
 namespace VLTest.Player.Weapons
 {
-
-    public class ShotEffect : MonoBehaviour
+    public class BulletDecal : ObjectPoolItem
     {
+
         #region MEMBERS
-        public float duration = 0.2f;
-        public GameObject render;
+        public float lifeTime = 0.1f;
+        public MeshRenderer render;
 
         private bool running;
         private float timeRemaining;
         #endregion
 
-        #region PUBLIC METHODS
-        public void PlayEffect()
-        {
-            if (running)
-            {
-                return;
-            }
-            render.SetActive(true);
-            running = true;
-            timeRemaining = duration;
-        }
-        #endregion
-
         #region PRIVATE METHODS
-        private void Awake()
+        public override void Activate()
         {
-            render.SetActive(false);
+            base.Activate();
+            render.enabled = true;
+            running = true;
+            timeRemaining = lifeTime;
+        }
+
+        public override void Deactivate()
+        {
+            render.enabled = false;
+            running = false;
+            base.Deactivate();
         }
 
         private void LateUpdate()
@@ -41,11 +39,11 @@ namespace VLTest.Player.Weapons
                 timeRemaining -= Time.deltaTime;
                 if (timeRemaining <= 0)
                 {
-                    render.SetActive(false);
-                    running = false;
+                    Deactivate();
                 }
             }
         }
         #endregion
+
     }
 }

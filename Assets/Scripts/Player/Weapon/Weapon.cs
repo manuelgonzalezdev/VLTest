@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VLTest.Player
+namespace VLTest.Player.Weapons
 {
     [CreateAssetMenu(menuName ="Player/Weapon")]
     public class Weapon : ScriptableObject

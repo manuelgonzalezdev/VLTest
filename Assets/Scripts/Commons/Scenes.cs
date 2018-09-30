@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VLTest.Game
+namespace VLTest.Commons
 {
-    [CreateAssetMenu(menuName = "Game/Scenes")]
+    [CreateAssetMenu(menuName = "Commons/Scenes")]
     public class Scenes : ScriptableObject
     {
         #region MEMBERS

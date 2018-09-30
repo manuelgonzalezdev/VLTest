@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using VLTest.Game;
+using VLTest.Commons;
 
 namespace VLTest.UI
 {
     public class PauseManager : MonoBehaviour
     {
         #region MEMBERS
-        public string pauseInput = "Pause";
+        public Inputs inputs;
 
         private bool pauseDown;
         #endregion
@@ -16,7 +17,7 @@ namespace VLTest.UI
         #region PRIVATE METHODS
         private void Update()
         {
-            bool pausePressed = Input.GetAxis(pauseInput) != 0;
+            bool pausePressed = Input.GetAxis(inputs.pauseInput) != 0;
 
             if (!pauseDown && pausePressed)
             {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using VLTest.Player;
+using VLTest.Player.Weapons;
 
 namespace VLTest.UI
 {

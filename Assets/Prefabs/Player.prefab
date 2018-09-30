@@ -406,7 +406,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 24375
+    m_Bits: 57141
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -446,7 +446,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 16183
+    m_Bits: 48949
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -483,10 +483,10 @@ Camera:
   field of view: 40
   orthographic: 0
   orthographic size: 5
-  m_Depth: 1
+  m_Depth: 2
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1335
+    m_Bits: 34103
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -651,12 +651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 114646821142672326}
-  horizontalAxisInput: Mouse X
-  verticalAxisInput: Mouse Y
-  fireInput: Fire
-  cameraSwitchInput: Camera Switch
-  weaponScrollInput: Mouse ScrollWheel
-  weaponPrefix: Weapon {0}
+  inputs: {fileID: 11400000, guid: 6d77ffb423ef79648b797978cde1da42, type: 2}
   horizontal: 0
   vertical: 0
   weaponScroll: 0
@@ -687,8 +682,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 114646821142672326}
-  enemyLayer: Enemy
+  enemyLayerName: Enemy
+  scenarioLayerName: Scenario
   shotEffect: {fileID: 114984443017111512}
+  bulletDecalPool: {fileID: 11400000, guid: 2f879775aa671814481b9323ad8a6253, type: 2}
 --- !u!114 &114343798509375206
 MonoBehaviour:
   m_ObjectHideFlags: 1

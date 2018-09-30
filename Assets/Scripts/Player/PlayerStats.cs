@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using VLTest.Player.Weapons;
 
 namespace VLTest.Player
 {
