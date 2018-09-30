@@ -6,7 +6,9 @@ namespace VLTest.Enemies.Movement
 {
     public abstract class EnemyMovementType : ScriptableObject
     {
+        #region PUBLIC METHODS
         public abstract EnemyMovementLogic CreateMovement(GameObject enemy);
+        #endregion
     }
 
     /// <summary>
@@ -15,6 +17,7 @@ namespace VLTest.Enemies.Movement
     /// </summary>
     public abstract class EnemyMovementLogic
     {
+        #region MEMBERS
         protected const string ENEMY_LAYER = "Enemy";
         protected const string PROJECTION_LAYER= "Projection";
 
@@ -22,6 +25,10 @@ namespace VLTest.Enemies.Movement
         protected Action callback;
         protected Projection projection;
         protected int overlapMask;
+
+        #endregion
+
+        #region PUBLIC METHODS
 
         public EnemyMovementLogic(GameObject enemy)
         {
@@ -39,6 +46,10 @@ namespace VLTest.Enemies.Movement
                 projection = null;
             }
         }
+
+        #endregion
+
+        #region PRIVATE METHODS
 
         protected Projection CreateProjection(ObjectPool projectionPool, Vector3 direction)
         {
@@ -67,6 +78,6 @@ namespace VLTest.Enemies.Movement
                 callback.Invoke();
             }
         }
-
+        #endregion
     }
 }

@@ -6,7 +6,7 @@ namespace VLTest.Player
 {
     public class PlayerSwitchWeapon : PlayerComponent
     {
-
+        #region PRIVATE METHODS
         private void Update()
         {
             if (player.input.weaponScroll != 0)
@@ -26,7 +26,6 @@ namespace VLTest.Player
             Weapon newWeapon = weapons[newIndex];
             player.stats.currentWeapon = newWeapon;
         }
-
-
+        #endregion
     }
 }

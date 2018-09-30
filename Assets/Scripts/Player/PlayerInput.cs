@@ -9,7 +9,7 @@ namespace VLTest.Player
     /// </summary>
     public class PlayerInput : MonoBehaviour
     {
-
+        #region MEMBERS
         [SerializeField]
         private string horizontalAxisInput = "Mouse X";
         [SerializeField]
@@ -43,7 +43,9 @@ namespace VLTest.Player
         public bool weapon2;
         [HideInInspector]
         public bool weapon3;
+        #endregion
 
+        #region PRIVATE METHODS
         private void Update()
         {
             horizontal = Input.GetAxis(horizontalAxisInput);
@@ -55,6 +57,6 @@ namespace VLTest.Player
             weapon2 = Input.GetAxis(weapon2Input) != 0;
             weapon3 = Input.GetAxis(weapon3Input) != 0;
         }
-
+        #endregion
     }
 }

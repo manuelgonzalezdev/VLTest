@@ -6,6 +6,8 @@ namespace VLTest.Enemies
 {
     public class EnemyComponent : MonoBehaviour
     {
+        #region MEMBERS
         public Enemy enemy;
+        #endregion
     }
 }

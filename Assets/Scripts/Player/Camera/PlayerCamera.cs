@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using VLTest.Utils;
 
-namespace VLTest.Player.Cameras {
-
-    public class PlayerCamera : PlayerComponent {
-
+namespace VLTest.Player.Cameras
+{
+    public class PlayerCamera : PlayerComponent
+    {
+        #region MEMBERS
         /// <summary>
         /// Factor to apply a sensibility base to each axes.
         /// </summary>
@@ -18,7 +19,7 @@ namespace VLTest.Player.Cameras {
         public Transform pivot;
 
         public PlayerCameraConfig config;
-        
+
         private PlayerInput input
         {
             get { return player.input; }
@@ -33,7 +34,9 @@ namespace VLTest.Player.Cameras {
         {
             get { return input.vertical; }
         }
+        #endregion
 
+        #region PRIVATE METHODS
         private void Awake()
         {
             if (pivot == null)
@@ -42,11 +45,10 @@ namespace VLTest.Player.Cameras {
             }
         }
 
-        private void Update() {
-
+        private void Update()
+        {
             if (horizontal != 0 || vertical != 0)
             {
-                
                 // Rotation around Y-axis
                 float degrees = horizontal * config.horizontalSensibility * SENSIBILITY_FACTOR;
 
@@ -81,6 +83,6 @@ namespace VLTest.Player.Cameras {
             xAngle = xAngle >= HALF_LOOP ? xAngle - FULL_LOOP : xAngle;
             return (xAngle > config.maxY || xAngle < config.minY) ? true : false;
         }
-
+        #endregion
     }
 }

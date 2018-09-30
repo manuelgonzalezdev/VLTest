@@ -8,7 +8,7 @@ namespace VLTest.Enemies
 
     public class EnemyAttack : EnemyComponent
     {
-
+        #region PRIVATE METHODS
         private void OnTriggerEnter(Collider collision)
         {
             PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
@@ -18,7 +18,7 @@ namespace VLTest.Enemies
                 enemy.Dead();
             }
         }
-
+        #endregion
     }
 
 }

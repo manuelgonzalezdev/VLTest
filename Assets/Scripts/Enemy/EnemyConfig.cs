@@ -8,6 +8,7 @@ namespace VLTest.Enemies
     [CreateAssetMenu(menuName = "Enemy/Enemy Config")]
     public class EnemyConfig : ScriptableObject
     {
+        #region MEMBERS
         public float health = 1f;
         public float damage = 1f;
         public float size = 1f;
@@ -18,6 +19,7 @@ namespace VLTest.Enemies
 
         public EnemyMovementType mainMovement;
         public List<EnemyMovementType> secondayMovements;
+        #endregion
 
     }
 }

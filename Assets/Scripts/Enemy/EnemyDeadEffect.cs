@@ -5,6 +5,7 @@ namespace VLTest.Enemies
 {
     public class EnemyDeadEffect : EnemyComponent
     {
+        #region MEMBERS
         private const float INITIAL_ALPHA = 1f;
         private const float EFFECT_DURATION = 0.5f;
 
@@ -13,7 +14,9 @@ namespace VLTest.Enemies
         private Action callback;
         private bool running;
         private float alpha;
+        #endregion
 
+        #region PUBLIC METHODS
         public void PlayDeadEffect(Action callback = null)
         {
             if (running)
@@ -25,7 +28,9 @@ namespace VLTest.Enemies
             enemy.collider.enabled = false;
             running = true;
         }
+        #endregion
 
+        #region PRIVATE METHODS
         private void OnEnable()
         {
             SetAlpha(INITIAL_ALPHA);
@@ -59,6 +64,6 @@ namespace VLTest.Enemies
             enemyRenderer.material.color = c;
             alpha = newAlpha;
         }
-
+        #endregion
     }
 }

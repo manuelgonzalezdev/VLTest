@@ -7,13 +7,15 @@ namespace VLTest.Player
 
     public class ShotEffect : MonoBehaviour
     {
-
+        #region MEMBERS
         public float duration = 0.2f;
         public GameObject render;
 
         private bool running;
         private float timeRemaining;
+        #endregion
 
+        #region PUBLIC METHODS
         public void PlayEffect()
         {
             if (running)
@@ -24,7 +26,9 @@ namespace VLTest.Player
             running = true;
             timeRemaining = duration;
         }
+        #endregion
 
+        #region PRIVATE METHODS
         private void Awake()
         {
             render.SetActive(false);
@@ -42,7 +46,6 @@ namespace VLTest.Player
                 }
             }
         }
-
-
+        #endregion
     }
 }

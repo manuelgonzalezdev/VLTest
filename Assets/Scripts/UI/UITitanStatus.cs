@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using VLTest.Game.Level;
 
 namespace VLTest.UI
 {
     public class UITitanStatus : MonoBehaviour
     {
+        #region MEMBERS
         public GameObject titanPanel;
+        #endregion
 
+        #region PRIVATE METHODS
         private void Awake()
         {
             titanPanel.SetActive(false);
@@ -28,6 +30,6 @@ namespace VLTest.UI
         {
             titanPanel.SetActive(true);
         }
-        
+        #endregion
     }
 }

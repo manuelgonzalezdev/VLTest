@@ -6,6 +6,7 @@ namespace VLTest.Utils
     [CreateAssetMenu(menuName = "Object Pool")]
     public class ObjectPool : ScriptableObject
     {
+        #region MEMBERS
         public GameObject itemPrefab;
         public int minPopulation = 5;
         public int maxPopulation = 10;
@@ -13,6 +14,7 @@ namespace VLTest.Utils
 
         [System.NonSerialized] private List<ObjectPoolItem> inactiveItems = new List<ObjectPoolItem>();
         [System.NonSerialized] private List<ObjectPoolItem> activeItems = new List<ObjectPoolItem>();
+        [System.NonSerialized] private Transform inactiveParent;
         [System.NonSerialized] private bool populated = false;
         [System.NonSerialized] private long lastID = 0;
 
@@ -21,8 +23,13 @@ namespace VLTest.Utils
             get { return activeItems.Count; }
         }
 
+        #endregion
+
+        #region PUBLIC METHODS
+
         public void Populate()
         {
+            inactiveParent = CreateInactiveParent(inactivePosition);
             Clear();
             for (int i = 0; i < minPopulation; i++)
             {
@@ -53,17 +60,6 @@ namespace VLTest.Utils
             item.gameObject.transform.SetPositionAndRotation(position, rotation);
             item.Activate();
 
-            return item;
-        }
-
-        ObjectPoolItem Create()
-        {
-            GameObject gO = GameObject.Instantiate(itemPrefab);
-            gO.name = gO.name.Replace("(Clone)", "_" + (++lastID));
-            ObjectPoolItem item = Utils.GetComponentOrCreateIfNotExists<ObjectPoolItem>(gO);
-            item.Initialize(this);
-            gO.SetActive(false);
-            gO.transform.SetPositionAndRotation(inactivePosition, Quaternion.identity);
             return item;
         }
 
@@ -109,6 +105,31 @@ namespace VLTest.Utils
             }
         }
 
+        #endregion
+
+        #region PRIVATE METHODS
+
+        private Transform CreateInactiveParent(Vector3 position)
+        {
+            Transform inactiveParent = new GameObject().transform;
+            inactiveParent.name = string.Concat(itemPrefab.name, " Pool");
+            inactiveParent.position = inactivePosition;
+            return inactiveParent;
+        }
+
+        private ObjectPoolItem Create()
+        {
+            GameObject gO = GameObject.Instantiate(itemPrefab);
+            string nameSuffix = string.Concat("_" + (++lastID));
+            gO.name = gO.name.Replace("(Clone)", nameSuffix);
+            ObjectPoolItem item = Utils.GetComponentOrCreateIfNotExists<ObjectPoolItem>(gO);
+            item.Initialize(this);
+            gO.SetActive(false);
+            gO.transform.SetParent(inactiveParent);
+            gO.transform.SetPositionAndRotation(inactivePosition, Quaternion.identity);
+            return item;
+        }
+        #endregion
     }
 
 }

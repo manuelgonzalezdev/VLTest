@@ -10,12 +10,12 @@ namespace VLTest.Enemies.Movement
     [RequireComponent(typeof(BoxCollider))]
     public class Projection : ObjectPoolItem
     {
-
+        #region PUBLIC METHODS
         public override void Deactivate()
         {
             transform.localScale = Vector3.one;
             base.Deactivate();
         }
-
+        #endregion
     }
 }

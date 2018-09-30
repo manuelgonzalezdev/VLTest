@@ -6,7 +6,7 @@ namespace VLTest.Player.Cameras {
 
     public class RearPlayerCamera : PlayerComponent {
 
-
+        #region PRIVATE METHODS
         private void Update()
         {
             transform.forward = -player.cameraController.currentCamera.transform.forward;
@@ -18,8 +18,7 @@ namespace VLTest.Player.Cameras {
             forward.y = 0;
             return forward;
         }
-
-        
+        #endregion
 
     }
 }

@@ -1,15 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace VLTest.Utils
 {
     public static class Utils
     {
+        #region PUBLIC METHODS
         public static T GetComponentOrCreateIfNotExists<T>(GameObject gO) where T : Component
         {
-            T component  = gO.GetComponent<T>();
-            if(component == null)
+            T component = gO.GetComponent<T>();
+            if (component == null)
             {
                 component = gO.AddComponent<T>();
             }
@@ -21,5 +20,5 @@ namespace VLTest.Utils
             return new Vector3(Mathf.Abs(v.x), Mathf.Abs(v.y), Mathf.Abs(v.z));
         }
     }
-
+    #endregion
 }

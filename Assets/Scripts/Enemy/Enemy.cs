@@ -14,6 +14,7 @@ namespace VLTest.Enemies
     /// </summary>
     public class Enemy : ObjectPoolItem
     {
+        #region MEMBERS
         public delegate void OnEnemyeadEvent(EnemyConfig config);
         public static event OnEnemyeadEvent OnEnemyKilled;
 
@@ -24,11 +25,13 @@ namespace VLTest.Enemies
         public EnemyDeadEffect deadEffect;
         public EnemyHitEffect hitEffect;
         public new Collider collider;
+        #endregion
 
+        #region PUBLIC METHODS
         public void LoadConfig(EnemyConfig config)
         {
             this.config = config;
-            gameObject.name = config.name;
+            gameObject.name = gameObject.name.Replace("SimpleCube", config.name);
             enemyHealth.SetHealth(config.health);
             transform.localScale = Vector3.one * config.size;
             movement.LoadMovements(config);
@@ -66,6 +69,10 @@ namespace VLTest.Enemies
             base.Deactivate();
         }
 
+        #endregion
+
+        #region PRIVATE METHODS
+
         private void Awake()
         {
             collider = GetComponent<Collider>();
@@ -97,7 +104,7 @@ namespace VLTest.Enemies
             }
             
         }
-
+        #endregion
 
     }
 }

@@ -6,7 +6,7 @@ namespace VLTest.Game
 {
     public class HideMouse : MonoBehaviour
     {
-
+        #region PRIVATE METHODS
         private void OnEnable()
         {
             GameStateManager.OnGameStateChanges += OnGameStateChanged;
@@ -29,6 +29,6 @@ namespace VLTest.Game
         {
             Cursor.visible = !hide;
         }
-
+        #endregion
     }
 }

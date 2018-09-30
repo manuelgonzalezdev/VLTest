@@ -6,11 +6,14 @@ namespace VLTest.Player
     [CreateAssetMenu(menuName = "Player/Player Stats")]
     public class PlayerStats : ScriptableObject
     {
+        #region EVENTS
         public delegate void OnHealthChangedEvent(float newHealth);
         public delegate void OnWeaponChangedEvent(Weapon newWeapon);
         public event OnHealthChangedEvent OnHealthChanged;
         public event OnWeaponChangedEvent OnWeaponChanged;
+        #endregion
 
+        #region MEMBERS
         public float maxHealth = 100;
         public Weapon initialWeapon;
         public List<Weapon> availableWeapons;
@@ -66,9 +69,9 @@ namespace VLTest.Player
                 }
             }
         }
+        #endregion
 
-
-
+        #region PRIVATE METHODS
         private void Initialize()
         {
             _currentHealth = maxHealth;
@@ -79,6 +82,6 @@ namespace VLTest.Player
             }
             initialized = true;
         }
-
+        #endregion
     }
 }

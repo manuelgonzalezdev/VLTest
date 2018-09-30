@@ -2,9 +2,9 @@
 
 namespace VLTest.Game
 {
-
     public class TimeManager : MonoBehaviour
     {
+        #region PRIVATE METHODS
         private void OnEnable()
         {
             GameStateManager.OnGameStateChanges += OnGameStateChanged;
@@ -26,5 +26,6 @@ namespace VLTest.Game
         {
             Time.timeScale = scale;
         }
+        #endregion
     }
 }

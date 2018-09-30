@@ -7,18 +7,23 @@ namespace VLTest.Enemies.Movement
     [CreateAssetMenu(menuName = "Enemy/Movements/Forward")]
     public class ForwardMovement : EnemyMovementType
     {
+        #region PUBLIC METHODS
         public override EnemyMovementLogic CreateMovement(GameObject enemy)
         {
             return new ForwardMovementLogic(enemy);
         }
+        #endregion
     }
 
     public class ForwardMovementLogic : EnemyMovementLogic
     {
+        
+        #region MEMEBERS
         private const float ANGLE = 90f;
-
         private Rotator rotator;
+        #endregion
 
+        #region PUBLIC METHODS
         public ForwardMovementLogic(GameObject enemy) : base(enemy)
         {
             rotator = Utils.Utils.GetComponentOrCreateIfNotExists<Rotator>(enemy);
@@ -50,6 +55,7 @@ namespace VLTest.Enemies.Movement
             base.Cancel();
             rotator.Cancel();
         }
+        #endregion
     }
 
 }

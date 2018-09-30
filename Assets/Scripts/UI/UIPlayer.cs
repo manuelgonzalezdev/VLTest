@@ -8,10 +8,13 @@ namespace VLTest.UI
 {
     public class UIPlayer : MonoBehaviour
     {
+        #region MEMBERS
         public PlayerStats stats;
         public Text currentWeaponLabel;
         public Image healthBar;
+        #endregion
 
+        #region PRIVATE METHODS
         private void OnEnable()
         {
             stats.OnHealthChanged += OnPlayerHealthChanged;
@@ -47,6 +50,6 @@ namespace VLTest.UI
         {
             SetWeapon(weapon);
         }
-
+        #endregion
     }
 }

@@ -4,10 +4,9 @@ using VLTest.Game;
 
 namespace VLTest.UI
 {
-
     public class UIFinish : MonoBehaviour
     {
-
+        #region MEMBERS
         public string winTitle;
         public string winSubtitle;
 
@@ -16,13 +15,15 @@ namespace VLTest.UI
 
         public Text title;
         public Text subtitle;
+        #endregion
 
+        #region PRIVATE METHODS
         private void OnEnable()
         {
             GameStateManager.GameState current = GameStateManager.currentState;
             title.text = current == GameStateManager.GameState.WIN ? winTitle : loseTitle;
             subtitle.text = current == GameStateManager.GameState.WIN ? winSubtitle : loseSubtitle;
         }
-
+        #endregion
     }
 }

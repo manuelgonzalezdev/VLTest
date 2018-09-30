@@ -7,21 +7,24 @@ namespace VLTest.Enemies.Movement
     [CreateAssetMenu(menuName = "Enemy/Movements/Zig-zag")]
     public class ZigZagMovement : EnemyMovementType
     {
-
+        #region PUBLIC METHODS
         public override EnemyMovementLogic CreateMovement(GameObject enemy)
         {
             return new ZigZagLogic(enemy);
         }
-
+        #endregion
     }
 
     public class ZigZagLogic : EnemyMovementLogic
     {
+        #region MEMBERS
         private const float ANGLE = 90f;
 
         private Rotator rotator;
         private bool right;
+        #endregion
 
+        #region PUBLIC METHODS
         public ZigZagLogic(GameObject enemy) : base(enemy)
         {
             rotator = Utils.Utils.GetComponentOrCreateIfNotExists<Rotator>(enemy);
@@ -56,6 +59,6 @@ namespace VLTest.Enemies.Movement
             base.Cancel();
             rotator.Cancel();
         }
-
+        #endregion
     }
 }

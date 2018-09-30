@@ -3,14 +3,15 @@ using VLTest.Game;
 
 namespace VLTest.UI
 {
-
     public class UIGame : MonoBehaviour
     {
-
+        #region MEMBERS
         public GameObject gamePanel;
         public GameObject pausePanel;
         public GameObject finishPanel;
+        #endregion
 
+        #region PUBLIC METHODS
         public void Resume()
         {
             GameStateManager.currentState = GameStateManager.GameState.GAME;
@@ -20,7 +21,9 @@ namespace VLTest.UI
         {
             GameStateManager.currentState = GameStateManager.GameState.MENU;
         }
+        #endregion
 
+        #region PRIVATE METHODS
         private void OnEnable()
         {
             GameStateManager.OnGameStateChanges += OnGameStateChanged;
@@ -37,6 +40,6 @@ namespace VLTest.UI
             pausePanel.SetActive(newState == GameStateManager.GameState.PAUSE);
             finishPanel.SetActive(newState == GameStateManager.GameState.LOSE || newState == GameStateManager.GameState.WIN);
         }
-
+        #endregion
     }
 }

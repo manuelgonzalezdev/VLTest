@@ -9,9 +9,12 @@ namespace VLTest.Player.Cameras {
     /// </summary>
     public class PlayerCameraController : MonoBehaviour {
 
+        #region EVENTS
         public delegate void OnCameraChangedEvent(PlayerCamera newCamera);
         public static event OnCameraChangedEvent OnCameraChanged;
+        #endregion
 
+        #region MEMBERS
         public PlayerInput input;
         public PlayerCamera[] cameras;
 
@@ -20,10 +23,12 @@ namespace VLTest.Player.Cameras {
             get { return cameras[currentCameraIndex]; }
         }
 
-        private int currentCameraIndex;
         // Flag to avoid burst input
         private bool cameraChanged;
+        private int currentCameraIndex;
+        #endregion
 
+        #region PRIVATE METHODS
         private void Awake()
         {
             ChangeToCamera(0);
@@ -56,5 +61,6 @@ namespace VLTest.Player.Cameras {
                 }
             }
         }
+        #endregion
     }
 }

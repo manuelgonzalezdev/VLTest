@@ -13,6 +13,8 @@ namespace VLTest.Enemies.Movement
     /// </summary>
     public class EnemyMovement : EnemyComponent
     {
+        #region MEMBERS
+
         public float speed;
         public int secondaryMovementFrequency;
         public ObjectPool projectionPool;
@@ -23,6 +25,9 @@ namespace VLTest.Enemies.Movement
         private int currentSteps;
         private EnemyMovementLogic currentMovement;
 
+        #endregion
+
+        #region PUBLIC METHODS
         public void LoadMovements(EnemyConfig config)
         {
             speed = config.speed;
@@ -49,6 +54,10 @@ namespace VLTest.Enemies.Movement
                 currentMovement = null;
             }
         }
+
+        #endregion
+
+        #region PRIVATE METHODS
 
         private void Move()
         {
@@ -81,6 +90,8 @@ namespace VLTest.Enemies.Movement
             yield return new WaitForSeconds(1f);
             Move();
         }
+
+        #endregion
 
     }
 

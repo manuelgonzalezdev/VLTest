@@ -6,7 +6,7 @@ namespace VLTest.Player
 {
     public class PlayerHealth : PlayerComponent
     {
-
+        #region MEMBERS
         public float health
         {
             get { return player.stats.currentHealth; }
@@ -19,6 +19,9 @@ namespace VLTest.Player
                 }
             }
         }
+        #endregion
+
+        #region PUBLIC METHODS
 
         public void SetDamage(float damage)
         {
@@ -28,10 +31,13 @@ namespace VLTest.Player
             }
         }
 
+        #endregion
+
+        #region PRIVATE METHODS
         private void OnEnable()
         {
             health = player.stats.maxHealth;
         }
-
+        #endregion
     }
 }

@@ -7,26 +7,31 @@ namespace VLTest.Enemies.Movement
     [CreateAssetMenu(menuName = "Enemy/Movements/Jumping")]
     public class JumpingMovement : EnemyMovementType
     {
-
+        #region MEMBERS
         public float jumpingSpeed = 1f;
         public float jumpingDistance = 1f;
         public float jumpingHeight = 1f;
+        #endregion
 
+        #region PUBLIC METHODS
         public override EnemyMovementLogic CreateMovement(GameObject enemy)
         {
             return new JumpingLogic(enemy, jumpingSpeed, jumpingDistance, jumpingHeight);
         }
+        #endregion
     }
 
     public class JumpingLogic : EnemyMovementLogic
     {
-
+        #region MEMBERS
         private Jumper jumper;
         private float jumpingSpeed;
         private float jumpingDistance;
         private float jumpingHeight;
         private float size;
+        #endregion
 
+        #region PUBLIC METHODS
         public JumpingLogic(GameObject enemy, float jumpingSpeed, float jumpingDistance,  float jumpingHeight) : base(enemy)
         {
             jumper = Utils.Utils.GetComponentOrCreateIfNotExists<Jumper>(enemy);
@@ -59,5 +64,6 @@ namespace VLTest.Enemies.Movement
             base.Cancel();
             jumper.Cancel();
         }
+        #endregion
     }
 }

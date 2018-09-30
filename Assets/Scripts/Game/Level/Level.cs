@@ -13,6 +13,7 @@ namespace VLTest.Game.Level
     [CreateAssetMenu(menuName = "Level")]
     public class Level : ScriptableObject
     {
+        #region MEMBERS
         /// <summary>
         /// Spawn frequency (in seconds) is a random value between a minimum (x) and maximum (y) value.
         /// This random value will be recalculated when an enemy is spawned.
@@ -30,7 +31,9 @@ namespace VLTest.Game.Level
         {
             get { return enemyPool.activeItemsCount >= maxEnemiesInScene; }
         }
+        #endregion
 
+        #region PUBLIC METHODS
         public void Initialize()
         {
             enemyConfigs.Sort(SortBySpawnProbability);
@@ -69,11 +72,13 @@ namespace VLTest.Game.Level
             }
             return enemyConfigs[enemyConfigs.Count - 1];
         }
+        #endregion
 
+        #region PRIVATE METHODS
         private int SortBySpawnProbability(EnemyConfig config1, EnemyConfig config2)
         {
             return config1.spawnProbability.CompareTo(config2.spawnProbability);
         }
-
+        #endregion
     }
 }

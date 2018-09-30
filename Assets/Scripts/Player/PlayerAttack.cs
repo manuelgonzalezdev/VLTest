@@ -5,15 +5,14 @@ using VLTest.Enemies;
 
 namespace VLTest.Player
 {
-
     public class PlayerAttack : PlayerComponent
     {
+        #region MEMBERS
         private const float MAX_RAYCAST_DISTANCE = 100f;
 
         public string enemyLayer = "Enemy";
         public ShotEffect shotEffect;
             
-
         private Transform currentCameraTransform
         {
             get { return player.cameraController.currentCamera.transform; }
@@ -25,7 +24,9 @@ namespace VLTest.Player
         {
             get { return remainingCooldown <= 0; }
         }
+        #endregion
 
+        #region PRIVATE METHODS
         private void Awake()
         {
             enemyLayerMask = LayerMask.GetMask("Enemy");
@@ -90,6 +91,6 @@ namespace VLTest.Player
             currentWeapon = weapon;
             remainingCooldown = 0;
         }
-
+        #endregion
     }
 }

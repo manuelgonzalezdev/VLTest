@@ -14,6 +14,7 @@ namespace VLTest.Game.Level
     /// </summary>
     public class LevelController : MonoBehaviour
     {
+        #region MEMBERS
         public delegate void TitanEvent();
         public static event TitanEvent OnTitanSpawned;
 
@@ -32,7 +33,9 @@ namespace VLTest.Game.Level
         {
             get { return enemiesKilled >= level.enemiesKilledBeforeSpawnTitan && !titanSpawned; }
         }
+        #endregion
 
+        #region PRIVATE METHODS
         private void Awake()
         {
             if (player == null)
@@ -176,7 +179,7 @@ namespace VLTest.Game.Level
             yield return new WaitForSeconds(secondsToWaitBeforeToWin);
             GameStateManager.currentState = GameStateManager.GameState.WIN;
         }
-
+        #endregion
     }
 }
 

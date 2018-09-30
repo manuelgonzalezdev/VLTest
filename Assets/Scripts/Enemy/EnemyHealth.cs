@@ -6,8 +6,11 @@ namespace VLTest.Enemies
 {
     public class EnemyHealth : EnemyComponent
     {
+        #region MEMBERS
         public float health;
+        #endregion
 
+        #region PUBLIC METHODS
         public void SetDamage(float damage)
         {
             if (health > 0)
@@ -25,6 +28,7 @@ namespace VLTest.Enemies
         {
             this.health = health;
         }
+        #endregion
 
     }
 }

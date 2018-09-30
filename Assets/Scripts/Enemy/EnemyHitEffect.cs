@@ -6,6 +6,7 @@ namespace VLTest.Enemies {
 
     public class EnemyHitEffect : MonoBehaviour {
 
+        #region MEMBERS
         private const float EFFECT_DURATION = 0.1f;
 
         public MeshRenderer enemyRenderer;
@@ -14,7 +15,9 @@ namespace VLTest.Enemies {
         private bool running;
         private Color initialColor;
         private float timeRemaining;
+        #endregion
 
+        #region PUBLIC METHODS
         public void PlayHitEffect()
         {
             if (running)
@@ -54,6 +57,7 @@ namespace VLTest.Enemies {
         {
             enemyRenderer.material.color = color;
         }
+        #endregion
 
     }
 }

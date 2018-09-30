@@ -8,6 +8,7 @@ namespace VLTest.Enemies.Movement
     public class Jumper : MonoBehaviour
     {
 
+        #region MEMBERS
         private bool jumping;
         private float progress;
         private float height;
@@ -15,7 +16,9 @@ namespace VLTest.Enemies.Movement
         private Vector3 origin;
         private Vector3 destination;
         private Action callback;
+        #endregion
 
+        #region PUBLIC METHODS
         public void Jump(float distance, float height, float speed, Action callback)
         {
             if (jumping)
@@ -40,7 +43,9 @@ namespace VLTest.Enemies.Movement
                 jumping = false;
             }
         }
+        #endregion
 
+        #region PRIVATE METHODS
         private void OnDisable()
         {
             Cancel();
@@ -68,7 +73,7 @@ namespace VLTest.Enemies.Movement
                 }
             }
         }
-
+        #endregion
 
     }
 }

@@ -1,13 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace VLTest.Utils
 {
     public class ObjectPoolItem : MonoBehaviour
     {
+        #region MEMBERS
         private ObjectPool pool;
+        #endregion
 
+        #region PUBLIC METHODS
         public void Initialize(ObjectPool pool)
         {
             this.pool = pool;
@@ -30,7 +31,6 @@ namespace VLTest.Utils
                 Destroy(this.gameObject);
             }
         }
-
+        #endregion
     }
-
 }

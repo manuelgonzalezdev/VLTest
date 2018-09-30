@@ -1,12 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿
 namespace VLTest.Game
 {
     public static class GameStateManager
     {
-
         public enum GameState
         {
             START = 0,
@@ -17,9 +13,12 @@ namespace VLTest.Game
             PAUSE = 5
         }
 
+        #region EVENTS
         public delegate void GameStateEvent(GameState last, GameState current);
         public static event GameStateEvent OnGameStateChanges;
+        #endregion
 
+        #region MEMBERS
         private static GameState _currentState = GameState.START;
 
         public static GameState currentState
@@ -38,6 +37,6 @@ namespace VLTest.Game
                 }
             }
         }
-
+        #endregion
     }
 }

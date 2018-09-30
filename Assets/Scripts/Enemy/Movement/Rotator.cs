@@ -7,15 +7,17 @@ namespace VLTest.Enemies.Movement
 {
     public class Rotator : MonoBehaviour
     {
+        #region MEMBERS
         private bool rotating;
-
         private Quaternion lastRotation;
         private Vector3 pivot;
         private Vector3 axis;
         private float remainingDegrees;
         private float speed;
         private Action callback;
+        #endregion
 
+        #region PUBLIC METHODS
         public void Rotate(Vector3 pivot, Vector3 axis, float angle = 90f, float speed = 100f, Action callback = null)
         {
             lastRotation = transform.rotation;
@@ -36,13 +38,15 @@ namespace VLTest.Enemies.Movement
                 rotating = false;
             }
         }
+        #endregion
 
+        #region PRIVATE METHODS
         private void OnDisable()
         {
             Cancel();
         }
 
-        void Update()
+        private void Update()
         {
             if (rotating)
             {
@@ -67,10 +71,12 @@ namespace VLTest.Enemies.Movement
                 }
             }
         }
-
-        void OnDrawGizmosSelected()
+#if UNITY_EDITOR
+        private void OnDrawGizmosSelected()
         {
             Gizmos.DrawSphere(pivot, 0.1f);
         }
+#endif
+#endregion
     }
 }
