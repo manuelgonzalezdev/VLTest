@@ -29,7 +29,7 @@ namespace VLTest.Player
         #region PRIVATE METHODS
         private void Awake()
         {
-            enemyLayerMask = LayerMask.GetMask("Enemy");
+            enemyLayerMask = LayerMask.GetMask(enemyLayer);
         }
 
         private void Update()
