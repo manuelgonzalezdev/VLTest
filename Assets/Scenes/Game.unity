@@ -1261,21 +1261,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 20583456274574204, guid: e1ea7fea5859dfd4492450f19d910a1d,
-        type: 2}
-      propertyPath: m_CullingMask.m_Bits
-      value: 34103
-      objectReference: {fileID: 0}
-    - target: {fileID: 20375567385240970, guid: e1ea7fea5859dfd4492450f19d910a1d,
-        type: 2}
-      propertyPath: m_CullingMask.m_Bits
-      value: 57141
-      objectReference: {fileID: 0}
-    - target: {fileID: 20490459562636096, guid: e1ea7fea5859dfd4492450f19d910a1d,
-        type: 2}
-      propertyPath: m_CullingMask.m_Bits
-      value: 48949
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1ea7fea5859dfd4492450f19d910a1d, type: 2}
   m_IsPrefabAsset: 0
@@ -1957,7 +1942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b36908c3c5570442950cc67a3de748b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseInput: Pause
+  inputs: {fileID: 11400000, guid: 6d77ffb423ef79648b797978cde1da42, type: 2}
 --- !u!114 &1965123726
 MonoBehaviour:
   m_ObjectHideFlags: 0
