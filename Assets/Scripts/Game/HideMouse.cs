@@ -28,6 +28,7 @@ namespace VLTest.Game
         private void SetCursorVisibility(bool hide)
         {
             Cursor.visible = !hide;
+            Cursor.lockState = hide ? CursorLockMode.Locked : CursorLockMode.None;
         }
         #endregion
     }

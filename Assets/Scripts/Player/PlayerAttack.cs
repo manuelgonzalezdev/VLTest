@@ -70,7 +70,9 @@ namespace VLTest.Player
             Vector3 dispersion = cameraTransform.forward + (cameraTransform.right * randomDispersion.x) + (cameraTransform.up * randomDispersion.y);
             Vector3 dispersionPoint = cameraTransform.position + dispersion;
             Vector3 dispersionDirection = (dispersionPoint - cameraTransform.position).normalized;
+#if UNITY_EDITOR
             Debug.DrawRay(cameraTransform.position, dispersionDirection * MAX_RAYCAST_DISTANCE, Color.red, 0.5f);
+#endif
             return dispersionDirection;
         }
 
