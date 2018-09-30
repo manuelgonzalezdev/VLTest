@@ -9,7 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d42422fe21523f46bec1b47e5ca4b27, type: 3}
+<<<<<<< HEAD
+  m_Name: DefaultLayers
+=======
   m_Name: Layers
+>>>>>>> 3e592ac5e612b5826f9816f04628f7264c5460dd
   m_EditorClassIdentifier: 
   enemyLayerName: Enemy
   playerLayerName: Player
